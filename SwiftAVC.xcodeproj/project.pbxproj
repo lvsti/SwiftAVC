@@ -10,6 +10,7 @@
 		E819BC471AFAA94D006B79E5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819BC461AFAA94D006B79E5 /* main.swift */; };
 		E819BC4E1AFAA9FA006B79E5 /* Bitstream.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819BC4D1AFAA9FA006B79E5 /* Bitstream.swift */; };
 		E821EC851B02A7C30080C683 /* SynelDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E821EC841B02A7C30080C683 /* SynelDictionary.swift */; };
+		E821EC871B02B4D50080C683 /* SDParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E821EC861B02B4D50080C683 /* SDParse.swift */; };
 		E8B9F03A1AFD3FCA009159B4 /* SyntaxElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B9F0391AFD3FCA009159B4 /* SyntaxElement.swift */; };
 		E8B9F03C1AFD585B009159B4 /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B9F03B1AFD585B009159B4 /* Monad.swift */; };
 		E8B9F03E1B0158A9009159B4 /* BitParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B9F03D1B0158A9009159B4 /* BitParse.swift */; };
@@ -33,6 +34,7 @@
 		E819BC461AFAA94D006B79E5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E819BC4D1AFAA9FA006B79E5 /* Bitstream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bitstream.swift; sourceTree = "<group>"; };
 		E821EC841B02A7C30080C683 /* SynelDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynelDictionary.swift; sourceTree = "<group>"; };
+		E821EC861B02B4D50080C683 /* SDParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDParse.swift; sourceTree = "<group>"; };
 		E8B9F0391AFD3FCA009159B4 /* SyntaxElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxElement.swift; sourceTree = "<group>"; };
 		E8B9F03B1AFD585B009159B4 /* Monad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monad.swift; sourceTree = "<group>"; };
 		E8B9F03D1B0158A9009159B4 /* BitParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitParse.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				E8B9F03D1B0158A9009159B4 /* BitParse.swift */,
 				E819BC461AFAA94D006B79E5 /* main.swift */,
 				E8B9F03B1AFD585B009159B4 /* Monad.swift */,
+				E821EC861B02B4D50080C683 /* SDParse.swift */,
 				E821EC841B02A7C30080C683 /* SynelDictionary.swift */,
 				E8B9F0391AFD3FCA009159B4 /* SyntaxElement.swift */,
 				E8B9F03F1B0158C8009159B4 /* Utils.swift */,
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E819BC471AFAA94D006B79E5 /* main.swift in Sources */,
+				E821EC871B02B4D50080C683 /* SDParse.swift in Sources */,
 				E8B9F03E1B0158A9009159B4 /* BitParse.swift in Sources */,
 				E8B9F03C1AFD585B009159B4 /* Monad.swift in Sources */,
 				E819BC4E1AFAA9FA006B79E5 /* Bitstream.swift in Sources */,
