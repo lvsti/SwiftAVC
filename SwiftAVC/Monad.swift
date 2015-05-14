@@ -21,7 +21,7 @@ protocol Monad {
     func bind(A -> MB) -> MB
 
     func >>=(Self, A -> MB) -> MB
-    func >>(Self, MB) -> MB
+    func >><A,B>(Self, MB) -> MB
 }
 
 
@@ -76,6 +76,11 @@ extension EitherState: Monad {
 }
 
 infix operator >>= {
+    precedence 110
+    associativity left
+}
+
+infix operator >> {
     precedence 110
     associativity left
 }
