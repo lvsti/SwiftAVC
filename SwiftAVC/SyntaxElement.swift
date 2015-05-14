@@ -60,6 +60,12 @@ extension Synel: Printable {
     }
 }
 
+extension Synel: Hashable {
+    var hashValue: Int {
+        get { return name.hashValue }
+    }
+}
+
 func ==(lhs: Synel, rhs: Synel) -> Bool {
     return lhs.name == rhs.name
 }
@@ -68,7 +74,7 @@ func <(lhs: Synel, rhs: Synel) -> Bool {
     return lhs.name < rhs.name
 }
 
-func synelParse(forType type: SynelType) -> BitstreamParse {
+func parseBits(forSynelType type: SynelType) -> BitParse {
     switch type {
     case .AEv: return parseAEv()
     case .B8: return parseB8()
@@ -83,12 +89,12 @@ func synelParse(forType type: SynelType) -> BitstreamParse {
     }
 }
 
-func parseSynel(synel: Synel) -> BitstreamParse {
-    let parse = synelParse(forType: synel.type)
+func parseSynel(synel: Synel) -> BitParse {
+    let parse = parseBits(forSynelType: synel.type)
     return parse >>= { value in
-        return synel.validate(value) ?
-            BitstreamParse.unit(value) :
-            BitstreamParse.fail("validation of synel '\(synel)' failed, value = \(value)")
+        synel.validate(value) ?
+            BitParse.unit(value) :
+            BitParse.fail("validation of synel '\(synel)' failed, value = \(value)")
     }
 }
 

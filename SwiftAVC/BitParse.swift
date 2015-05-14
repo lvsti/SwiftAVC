@@ -1,5 +1,5 @@
 //
-//  BitstreamParse.swift
+//  BitParse.swift
 //  SwiftAVC
 //
 //  Created by Tamas Lustyik on 2015.05.11..
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BitstreamParseState {
+struct BitParseState {
     let bitstream: Bitstream
     let offset: Int
     
@@ -18,28 +18,33 @@ struct BitstreamParseState {
     }
 }
 
-typealias BitstreamParse = EitherState<String, BitstreamParseState, Int>
+typealias BitParseError = String
+typealias BitParse = EitherState<BitParseError, BitParseState, Int>
 
-
-func parseAEv() -> BitstreamParse {
-    return BitstreamParse.fail("AE(v): not implemented")
+extension EitherState {
+    var runBitParse: S -> (Either<E,A1>, S) { return self.runEitherState }
 }
 
-func parseB8() -> BitstreamParse {
+
+func parseAEv() -> BitParse {
+    return BitParse.fail("AE(v): not implemented")
+}
+
+func parseB8() -> BitParse {
     return parseFn(8);
 }
 
-func parseCEv() -> BitstreamParse {
-    return BitstreamParse.fail("CE(v): not implemented")
+func parseCEv() -> BitParse {
+    return BitParse.fail("CE(v): not implemented")
 }
 
-func parseFn(n: Int) -> BitstreamParse {
+func parseFn(n: Int) -> BitParse {
     if n > sizeof(Int)*8 {
-        return BitstreamParse.fail("F(n): integer overflow (\(n))")
+        return BitParse.fail("F(n): integer overflow (\(n))")
     }
     
-    return BitstreamParse { s0 in
-        let s1 = BitstreamParseState(bitstream: s0.bitstream, offset: s0.offset + n)
+    return BitParse { s0 in
+        let s1 = BitParseState(bitstream: s0.bitstream, offset: s0.offset + n)
         let bits = s0.bitstream.read(s0.offset, count: n)
         if let bits = bits {
             return (.Right(Box(bits)), s1)
@@ -49,38 +54,38 @@ func parseFn(n: Int) -> BitstreamParse {
     }
 }
 
-func parseIn(n: Int) -> BitstreamParse {
-    return parseFn(n).bind({ x in BitstreamParse.unit(extendSign(x, n)) })
+func parseIn(n: Int) -> BitParse {
+    return parseFn(n) >>= { x in BitParse.unit(extendSign(x, n)) }
 }
 
-func parseMEv() -> BitstreamParse {
-    return BitstreamParse.fail("ME(v): use UE(v) and refer to 9.1.2 for the mapping")
+func parseMEv() -> BitParse {
+    return BitParse.fail("ME(v): use UE(v) and refer to 9.1.2 for the mapping")
 }
 
-func parseSEv() -> BitstreamParse {
-    return parseUEv().bind({ ueValue in
+func parseSEv() -> BitParse {
+    return parseUEv() >>= { ueValue in
         let absValue = (ueValue + 1) >> 1
         let seValue = ueValue & 1 == 1 ? absValue : -absValue
-        return BitstreamParse.unit(seValue)
-    })
+        return BitParse.unit(seValue)
+    }
 }
 
-func parseTEv(r: Int) -> BitstreamParse {
+func parseTEv(r: Int) -> BitParse {
     if r > 1 {
         return parseUEv()
     } else if r == 1 {
-        return parseFn(1).bind({ x in BitstreamParse.unit(1 - x) })
+        return parseFn(1) >>= { x in BitParse.unit(1 - x) }
     }
     
-    return BitstreamParse.fail("TE(v): invalid range (\(r))")
+    return BitParse.fail("TE(v): invalid range (\(r))")
 }
 
-func parseUn(n: Int) -> BitstreamParse {
+func parseUn(n: Int) -> BitParse {
     return parseFn(n)
 }
 
-func parseUEv() -> BitstreamParse {
-    return BitstreamParse { s in
+func parseUEv() -> BitParse {
+    return BitParse { s in
         var leadingZeroBitCount = 0
         var offset = s.offset
         
@@ -95,7 +100,7 @@ func parseUEv() -> BitstreamParse {
                 }
             } else {
                 let msg = "UE(v): unexpected EOS"
-                return (.Left(Box(msg)), BitstreamParseState(bitstream: s.bitstream, offset: offset))
+                return (.Left(Box(msg)), BitParseState(bitstream: s.bitstream, offset: offset))
             }
         }
         
@@ -103,10 +108,10 @@ func parseUEv() -> BitstreamParse {
         if let mantissa = s.bitstream.read(offset, count: leadingZeroBitCount) {
             offset += leadingZeroBitCount
             let value = (1 << leadingZeroBitCount) - 1 + mantissa
-            return (.Right(Box(value)), BitstreamParseState(bitstream: s.bitstream, offset: offset))
+            return (.Right(Box(value)), BitParseState(bitstream: s.bitstream, offset: offset))
         } else {
             let msg = "UE(v): incomplete exp-Golomb codeword"
-            return (.Left(Box(msg)), BitstreamParseState(bitstream: s.bitstream, offset: offset))
+            return (.Left(Box(msg)), BitParseState(bitstream: s.bitstream, offset: offset))
         }
     }
 }
