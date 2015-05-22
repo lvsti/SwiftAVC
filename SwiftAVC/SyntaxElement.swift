@@ -40,16 +40,25 @@ extension SynelType: Printable {
     }
 }
 
+let kSynelCategoryAll = [Int]()
+
 struct Synel: Equatable, Comparable {
     let name: String
     let type: SynelType
     let categories: [Int]
     let validate: Int -> Bool
     
-    init(name: String, type: SynelType, categories: [Int], validate: Int -> Bool = {_ in true}) {
+    init(name: String, type: SynelType, categories: [Int], validate: (Int) -> Bool = {_ in true}) {
         self.name = name
         self.type = type
         self.categories = categories
+        self.validate = validate
+    }
+
+    init(name: String, type: SynelType, validate: (Int) -> Bool = {_ in true}) {
+        self.name = name
+        self.type = type
+        self.categories = kSynelCategoryAll
         self.validate = validate
     }
 }
