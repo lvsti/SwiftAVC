@@ -22,7 +22,7 @@ typealias BitParseError = String
 typealias BitParse = EitherState<BitParseError, BitParseState, Int>
 
 extension EitherState {
-    var runBitParse: S -> (Either<E,A1>, S) { return self.runEitherState }
+    var runBitParse: S -> (Either<E,A>, S) { return self.runEitherState }
 }
 
 

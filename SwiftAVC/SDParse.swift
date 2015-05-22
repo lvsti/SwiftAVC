@@ -21,89 +21,89 @@ struct SDParseState {
 typealias SDParseError = String
 
 extension EitherState {
-    var runSDParse: S -> (Either<E,A1>, S) { return self.runEitherState }
+    var runSDParse: S -> (Either<E,A>, S) { return self.runEitherState }
 }
 
-typealias SDSynelParse = EitherState<String, SDParseState, Int>
-typealias SDStateParse = EitherState<String, SDParseState, SDParseState>
-typealias SDUnitParse = EitherState<String, SDParseState, ()>
+typealias SDParse = EitherState<String, SDParseState, ()>
 
+func lambda(f: SDParseState -> SDParse) -> (SDParseState -> SDParse) {
+    return f
+}
 
-func parseS(synel: Synel) -> SDSynelParse {
+func parseS(synel: Synel) -> SDParse {
     return parseWith({ (sd, syn, v) in sd.setScalar(v, forKey:syn) }, synel)
 }
 
-func parseA(synel: Synel) -> SDSynelParse {
+func parseA(synel: Synel) -> SDParse {
     return parseWith({ (sd, syn, v) in sd.appendToArray(values: [v], forKey: syn) }, synel)
 }
 
-func parseM(synel: Synel, index: Int) -> SDSynelParse {
+func parseM(synel: Synel, index: Int) -> SDParse {
     return parseWith({ (sd, syn, v) in sd.addToValueMap(values: [index: v], forKey: syn) }, synel)
 }
 
-func parseWith(f: (SynelDictionary, Synel, Int) -> SynelDictionary, synel: Synel) -> SDSynelParse {
-    return SDSynelParse.get() >>= { sdps in
+func parseWith(f: (SynelDictionary, Synel, Int) -> SynelDictionary, synel: Synel) -> SDParse {
+    return SDParse.get() >>- { sdps in
         let bitParse = parseSynel(synel)
         let (bpResult, newBPS) = bitParse.runBitParse(sdps.bitParseState)
         
         switch bpResult {
-            case .Left(let box): return SDSynelParse.fail(box.unbox())
+            case .Left(let box): return SDParse.fail(box.unbox())
             case .Right(let box):
                 let value = box.unbox()
                 let newSD = f(sdps.dictionary, synel, value)
-                return SDSynelParse.put(SDParseState(bitPS: newBPS, dictionary: newSD)) >>
-                    SDSynelParse.unit(value)
+                return SDParse.put(SDParseState(bitPS: newBPS, dictionary: newSD))
         }
     }
 }
 
-func parseForEach<A>(values: [A], parser: A -> SDSynelParse) -> SDUnitParse {
-    var chain = SDSynelParse.unit(0)
+func parseForEach<A>(values: [A], parser: A -> SDParse) -> SDParse {
+    var chain = SDParse.unit(())
     
     for value in values {
-        chain = chain.bind({ _ in parser(value) })
+        chain = chain >- parser(value)
     }
     
-    return chain >> SDUnitParse.unit(())
+    return chain
 }
 
-func parseWhenSD(predicate: SynelDictionary -> Bool, parse: SDSynelParse) -> SDUnitParse {
-    return SDSynelParse.get() >>= { sdps in
+func parseWhenSD(predicate: SynelDictionary -> Bool, parse: SDParse) -> SDParse {
+    return SDParse.get() >>- { sdps in
         if predicate(sdps.dictionary) {
-            return parse >> SDUnitParse.unit(())
+            return parse
         }
         
-        return SDUnitParse.unit(())
+        return SDParse.unit(())
     }
 }
 
-func parseWhileSD(predicate: SynelDictionary -> Bool, parse: SDSynelParse) -> SDUnitParse {
-    return SDSynelParse.get() >>= { sdps in
+func parseWhileSD(predicate: SynelDictionary -> Bool, parse: SDParse) -> SDParse {
+    return SDParse.get() >>- { sdps in
         if predicate(sdps.dictionary) {
-            return parse >> parseWhileSD(predicate, parse)
+            return parse >- parseWhileSD(predicate, parse)
         }
         
-        return SDUnitParse.unit(())
+        return SDParse.unit(())
     }
 }
 
-func parseWhen(predicate: SDParseState -> Bool, parse: SDSynelParse) -> SDUnitParse {
-    return SDSynelParse.get() >>= { sdps in
+func parseWhen(predicate: SDParseState -> Bool, parse: SDParse) -> SDParse {
+    return SDParse.get() >>- { sdps in
         if predicate(sdps) {
-            return parse >> SDUnitParse.unit(())
+            return parse
         }
         
-        return SDUnitParse.unit(())
+        return SDParse.unit(())
     }
 }
 
-func parseWhile(predicate: SDParseState -> Bool, parse: SDSynelParse) -> SDUnitParse {
-    return SDSynelParse.get() >>= { sdps in
+func parseWhile(predicate: SDParseState -> Bool, parse: SDParse) -> SDParse {
+    return SDParse.get() >>- { sdps in
         if predicate(sdps) {
-            return parse >> parseWhile(predicate, parse)
+            return parse >- parseWhile(predicate, parse)
         }
         
-        return SDUnitParse.unit(())
+        return SDParse.unit(())
     }
 }
 
