@@ -13,12 +13,12 @@ let kLeadBitmask: [UInt8] = [0b11111111, 0b01111111, 0b00111111, 0b00011111, 0b0
 
 
 struct Bitstream {
-    private let _data: NSData
+    let data: NSData
     let length: Int
 
     init(data: NSData) {
-        _data = data
-        length = _data.length * 8
+        self.data = data
+        self.length = data.length * 8
     }
     
     func read(offset: Int, count: Int) -> Int? {
@@ -27,11 +27,11 @@ struct Bitstream {
         let startIdx = offset / 8
         let endIdx = (offset + count) / 8
         
-        if endIdx >= _data.length {
+        if endIdx >= data.length {
             return nil
         }
         
-        let ptr = UnsafePointer<UInt8>(_data.bytes)
+        let ptr = UnsafePointer<UInt8>(data.bytes)
         var value: Int = Int(ptr[startIdx] & kLeadBitmask[offset % 8])
         
         if endIdx > startIdx + 1 {
