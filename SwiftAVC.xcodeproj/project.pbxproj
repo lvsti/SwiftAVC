@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E819BC471AFAA94D006B79E5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819BC461AFAA94D006B79E5 /* main.swift */; };
 		E819BC4E1AFAA9FA006B79E5 /* Bitstream.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819BC4D1AFAA9FA006B79E5 /* Bitstream.swift */; };
+		E81CBD471B05400C00EFD26B /* ByteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CBD461B05400C00EFD26B /* ByteStream.swift */; };
 		E821EC851B02A7C30080C683 /* SynelDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E821EC841B02A7C30080C683 /* SynelDictionary.swift */; };
 		E821EC871B02B4D50080C683 /* SDParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E821EC861B02B4D50080C683 /* SDParse.swift */; };
 		E8B9F03A1AFD3FCA009159B4 /* SyntaxElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B9F0391AFD3FCA009159B4 /* SyntaxElement.swift */; };
@@ -33,6 +34,7 @@
 		E819BC431AFAA94D006B79E5 /* SwiftAVC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftAVC; sourceTree = BUILT_PRODUCTS_DIR; };
 		E819BC461AFAA94D006B79E5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E819BC4D1AFAA9FA006B79E5 /* Bitstream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bitstream.swift; sourceTree = "<group>"; };
+		E81CBD461B05400C00EFD26B /* ByteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteStream.swift; sourceTree = "<group>"; };
 		E821EC841B02A7C30080C683 /* SynelDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynelDictionary.swift; sourceTree = "<group>"; };
 		E821EC861B02B4D50080C683 /* SDParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDParse.swift; sourceTree = "<group>"; };
 		E8B9F0391AFD3FCA009159B4 /* SyntaxElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxElement.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		E819BC451AFAA94D006B79E5 /* SwiftAVC */ = {
 			isa = PBXGroup;
 			children = (
+				E81CBD3E1B053BCB00EFD26B /* Parsing */,
 				E819BC4D1AFAA9FA006B79E5 /* Bitstream.swift */,
 				E8B9F03D1B0158A9009159B4 /* BitParse.swift */,
 				E819BC461AFAA94D006B79E5 /* main.swift */,
@@ -81,6 +84,22 @@
 				E8B9F03F1B0158C8009159B4 /* Utils.swift */,
 			);
 			path = SwiftAVC;
+			sourceTree = "<group>";
+		};
+		E81CBD3E1B053BCB00EFD26B /* Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				E81CBD3F1B053C8000EFD26B /* NAL */,
+			);
+			path = Parsing;
+			sourceTree = "<group>";
+		};
+		E81CBD3F1B053C8000EFD26B /* NAL */ = {
+			isa = PBXGroup;
+			children = (
+				E81CBD461B05400C00EFD26B /* ByteStream.swift */,
+			);
+			path = NAL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +166,7 @@
 				E8B9F03A1AFD3FCA009159B4 /* SyntaxElement.swift in Sources */,
 				E8B9F0401B0158C8009159B4 /* Utils.swift in Sources */,
 				E821EC851B02A7C30080C683 /* SynelDictionary.swift in Sources */,
+				E81CBD471B05400C00EFD26B /* ByteStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
