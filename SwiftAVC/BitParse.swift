@@ -55,7 +55,7 @@ func parseFn(n: Int) -> BitParse {
 }
 
 func parseIn(n: Int) -> BitParse {
-    return parseFn(n) >>= { x in BitParse.unit(extendSign(x, n)) }
+    return parseFn(n) >>- { x in BitParse.unit(extendSign(x, n)) }
 }
 
 func parseMEv() -> BitParse {
@@ -63,7 +63,7 @@ func parseMEv() -> BitParse {
 }
 
 func parseSEv() -> BitParse {
-    return parseUEv() >>= { ueValue in
+    return parseUEv() >>- { ueValue in
         let absValue = (ueValue + 1) >> 1
         let seValue = ueValue & 1 == 1 ? absValue : -absValue
         return BitParse.unit(seValue)
@@ -74,7 +74,7 @@ func parseTEv(r: Int) -> BitParse {
     if r > 1 {
         return parseUEv()
     } else if r == 1 {
-        return parseFn(1) >>= { x in BitParse.unit(1 - x) }
+        return parseFn(1) >>- { x in BitParse.unit(1 - x) }
     }
     
     return BitParse.fail("TE(v): invalid range (\(r))")

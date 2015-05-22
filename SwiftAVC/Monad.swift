@@ -20,8 +20,8 @@ protocol Monad {
     class func unit(A) -> MA
     func bind(A -> MB) -> MB
 
-    func >>=(Self, A -> MB) -> MB
-    func >><A,B>(Self, MB) -> MB
+    func >>-(Self, A -> MB) -> MB
+    func >-(Self, MB) -> MB
 }
 
 
@@ -75,21 +75,21 @@ extension EitherState: Monad {
     }
 }
 
-infix operator >>= {
+infix operator >>- {
     precedence 110
     associativity left
 }
 
-infix operator >> {
+infix operator >- {
     precedence 110
     associativity left
 }
 
-func >>=<E,S,A,B>(ma: EitherState<E,S,A>, f: A -> EitherState<E,S,B>) -> EitherState<E,S,B> {
+func >>-<E,S,A,B>(ma: EitherState<E,S,A>, f: A -> EitherState<E,S,B>) -> EitherState<E,S,B> {
     return ma.bind(f)
 }
 
-func >><E,S,A,B>(ma: EitherState<E,S,A>, mb: EitherState<E,S,B>) -> EitherState<E,S,B> {
+func >-<E,S,A,B>(ma: EitherState<E,S,A>, mb: EitherState<E,S,B>) -> EitherState<E,S,B> {
     return ma.bind({_ in mb})
 }
 
