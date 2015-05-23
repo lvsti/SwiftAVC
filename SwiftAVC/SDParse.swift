@@ -26,7 +26,7 @@ extension EitherState {
 
 typealias SDParse = EitherState<String, SDParseState, ()>
 
-func lambda(f: SDParseState -> SDParse) -> (SDParseState -> SDParse) {
+func sdLambda(f: SDParseState -> SDParse) -> (SDParseState -> SDParse) {
     return f
 }
 

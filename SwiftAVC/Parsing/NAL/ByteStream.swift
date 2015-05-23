@@ -36,13 +36,13 @@ extension EitherState {
 typealias ByteStreamParseError = String
 typealias ByteStreamParse = EitherState<ByteStreamParseError, ByteStreamParseState, ()>
 
-func lambda(f: ByteStreamParseState -> ByteStreamParse) -> (ByteStreamParseState -> ByteStreamParse) {
+func bsLambda(f: ByteStreamParseState -> ByteStreamParse) -> (ByteStreamParseState -> ByteStreamParse) {
     return f
 }
 
 func parseStartCodePrefixOne3bytes() -> ByteStreamParse {
     return ByteStreamParse.get() >>-
-        lambda { bsps in
+        bsLambda { bsps in
             if bsps.offset + 3 > bsps.data.length {
                 return ByteStreamParse.fail("parseStartCodePrefixOne3bytes: unexpected EOS")
             }
@@ -58,7 +58,7 @@ func parseStartCodePrefixOne3bytes() -> ByteStreamParse {
 
 func parseLeadingZeroes() -> ByteStreamParse {
     return ByteStreamParse.get() >>-
-        lambda { bsps in
+        bsLambda { bsps in
             if bsps.offset + 3 > bsps.data.length {
                 return ByteStreamParse.fail("parseLeadingZeroes: unexpected EOS")
             }
@@ -88,7 +88,7 @@ func findNALTerminationSequenceOffset(bsps: ByteStreamParseState) -> Int? {
 
 func parseTrailingZeroes() -> ByteStreamParse {
     return ByteStreamParse.get() >>-
-        lambda { bsps in
+        bsLambda { bsps in
             var delta = 0
             var ptr = UnsafePointer<UInt8>(bsps.data.bytes).advancedBy(bsps.offset)
             while bsps.offset + delta < bsps.data.length {
@@ -115,7 +115,7 @@ func parseNextNALUnitBytes() -> ByteStreamParse {
         parseLeadingZeroes() >-
         parseStartCodePrefixOne3bytes() >-
         ByteStreamParse.get() >>-
-        lambda { bsps in
+        bsLambda { bsps in
             if let nalUnitLength = findNALTerminationSequenceOffset(bsps) {
                 let newBsps = bsps.settingNALRange(NSMakeRange(bsps.offset, nalUnitLength)).advancedBy(nalUnitLength)
                 return ByteStreamParse.put(newBsps)

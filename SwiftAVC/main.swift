@@ -8,5 +8,19 @@
 
 import Foundation
 
-println("Hello, World!")
+func processNALParseResult(result: Either<String, NALUnit>) -> () {
+    switch result {
+    case .Left(let error):
+        println("ERROR: \(error.unbox())")
+    case .Right(let nalUnitBox):
+        println("decoding \(nalUnitBox.unbox())")
+    }
+}
 
+
+let data: NSData = NSData(contentsOfFile: Process.arguments[1])!
+
+nalUnitRangesFromByteStream(data)
+    .map { data.subdataWithRange($0) }
+    .map { parseNALUnitBytes($0) }
+    .map(processNALParseResult)
