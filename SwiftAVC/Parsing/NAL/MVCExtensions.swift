@@ -40,7 +40,7 @@ struct MVCHeaderSynel {
 }
 
 // spec H.7.3.1.1
-func parseNALUnitHeaderMVCExtension() -> SDParse {
+func parseNALUnitHeaderMVCExtension() -> H264Parse {
     return
         parseS(MVCHeaderSynel.nonIDRFlag) >-
         parseS(MVCHeaderSynel.priorityID) >-

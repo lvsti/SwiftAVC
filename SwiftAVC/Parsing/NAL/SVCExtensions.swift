@@ -49,7 +49,7 @@ struct SVCHeaderSynel {
 }
 
 // spec G.7.3.1.1
-func parseNALUnitHeaderSVCExtension() -> SDParse {
+func parseNALUnitHeaderSVCExtension() -> H264Parse {
     return
         parseS(SVCHeaderSynel.idrFlag) >-
         parseS(SVCHeaderSynel.priorityID) >-

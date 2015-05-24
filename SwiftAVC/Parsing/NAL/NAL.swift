@@ -123,9 +123,9 @@ extension NALUnit: Printable {
     var description: String { get { return "NAL {\(type): refIdc=\(refIDC), rbsp=\(rbspBytes.length)}" } }
 }
 
-typealias NALParse = EitherState<SDParseError, SDParseState, NALUnit>
+typealias NALParse = EitherState<H264ParseError, H264ParseState, NALUnit>
 
-func nalLambda(f: SDParseState -> NALParse) -> (SDParseState -> NALParse) {
+func nalLambda(f: H264ParseState -> NALParse) -> (H264ParseState -> NALParse) {
     return f
 }
 
@@ -142,43 +142,44 @@ func parseNALUnitBytes(bytes: NSData) -> Either<String, NALUnit> {
     let bs = Bitstream(data: bytes)
     let bps = BitParseState(bitstream: bs, offset: 0)
     let sdps = SDParseState(bitPS: bps, dictionary: SynelDictionary.empty())
+    let hps = H264ParseState(parseState: sdps, context: H264Context())
 
     let nalParse =
         parseS(NALUnitSynel.forbiddenZeroBit) >-
         parseS(NALUnitSynel.nalRefIDC) >-
         parseS(NALUnitSynel.nalUnitType) >-
-        SDParse.get() >>-
-        sdLambda { sdps in
-            let sd = sdps.dictionary
-            let nalType = NALUnitType(rawValue: sd.scalar(forKey: NALUnitSynel.nalUnitType))!
+        H264Parse.get() >>-
+        h264Lambda { hps in
+            let nalType = NALUnitType(rawValue: hps.dictionary.scalar(forKey: NALUnitSynel.nalUnitType))!
             let extHeaderNALTypes: [NALUnitType] = [.Prefix, .SliceExtension, .SliceDepth]
             
             if !contains(extHeaderNALTypes, nalType) {
-                return SDParse.unit(())
+                return H264Parse.unit(())
             }
             
             return
                 parseS(NALUnitSynel.svcExtensionFlag) >-
-                SDParse.get() >>-
-                sdLambda { sdps1 in
-                    let svcExtFlag = sdps1.dictionary.scalar(forKey: NALUnitSynel.svcExtensionFlag) != 0
+                H264Parse.get() >>-
+                h264Lambda { hps in
+                    let svcExtFlag = hps.dictionary.scalar(forKey: NALUnitSynel.svcExtensionFlag) != 0
                     return svcExtFlag ? parseNALUnitHeaderSVCExtension() : parseNALUnitHeaderMVCExtension()
                 }
         } >-
-        SDParse.get() >>-
-        nalLambda { sdps in
-            if sdps.bitParseState.offset % 8 != 0 {
+        H264Parse.get() >>-
+        nalLambda { hps in
+            let bps = hps.bitParseState
+            if bps.offset % 8 != 0 {
                 return NALParse.fail("RBSP is not byte-aligned")
             }
 
-            let byteOffset = sdps.bitParseState.offset / 8
+            let byteOffset = bps.offset / 8
 
-            let sd = sdps.dictionary
+            let sd = hps.dictionary
             let nalType = sd.scalar(forKey: NALUnitSynel.nalUnitType)
             let refIDC = sd.scalar(forKey: NALUnitSynel.nalRefIDC)
             
-            let escapedRBSPRange = NSMakeRange(byteOffset, sdps.bitParseState.bitstream.length/8 - byteOffset)
-            let rbspBytes = unescapeRBSP(sdps.bitParseState.bitstream.data.subdataWithRange(escapedRBSPRange))
+            let escapedRBSPRange = NSMakeRange(byteOffset, bps.bitstream.length/8 - byteOffset)
+            let rbspBytes = unescapeRBSP(bps.bitstream.data.subdataWithRange(escapedRBSPRange))
 
             let hasExtHeader = sd.hasKey(NALUnitSynel.svcExtensionFlag)
             var svcHeader: SVCHeader?
@@ -201,7 +202,7 @@ func parseNALUnitBytes(bytes: NSData) -> Either<String, NALUnit> {
             return NALParse.unit(nalUnit)
         }
     
-    return nalParse.runSDParse(sdps).0
+    return nalParse.runH264Parse(hps).0
 }
 
 // spec 7.3.1
