@@ -18,6 +18,7 @@
 		E81E0FE11B10C3FD000079CA /* SynelDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E0FDB1B10C3FD000079CA /* SynelDictionary.swift */; };
 		E81E0FE21B10C3FD000079CA /* SyntaxElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E0FDC1B10C3FD000079CA /* SyntaxElement.swift */; };
 		E81E0FE31B10C3FD000079CA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E0FDD1B10C3FD000079CA /* Utils.swift */; };
+		E861558D1B11F76E006F56D1 /* RBSP.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861558C1B11F76E006F56D1 /* RBSP.swift */; };
 		E8B9F03C1AFD585B009159B4 /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B9F03B1AFD585B009159B4 /* Monad.swift */; };
 		E8BD3D711B054E30006619A5 /* NAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CBD401B053C8000EFD26B /* NAL.swift */; };
 		E8BD3D721B054E36006619A5 /* SVCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CBD411B053C8000EFD26B /* SVCExtensions.swift */; };
@@ -50,6 +51,7 @@
 		E81E0FDB1B10C3FD000079CA /* SynelDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynelDictionary.swift; sourceTree = "<group>"; };
 		E81E0FDC1B10C3FD000079CA /* SyntaxElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxElement.swift; sourceTree = "<group>"; };
 		E81E0FDD1B10C3FD000079CA /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E861558C1B11F76E006F56D1 /* RBSP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBSP.swift; sourceTree = "<group>"; };
 		E8B9F03B1AFD585B009159B4 /* Monad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monad.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				E81CBD3F1B053C8000EFD26B /* NAL */,
+				E81E0FD31B10C1CE000079CA /* RBSP */,
 				E81E0FD81B10C3FD000079CA /* BitParse.swift */,
 				E81E0FD91B10C3FD000079CA /* Bitstream.swift */,
 				E81E0FDA1B10C3FD000079CA /* SDParse.swift */,
@@ -120,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				E81E0FD61B10C271000079CA /* H264Parse.swift */,
+				E861558C1B11F76E006F56D1 /* RBSP.swift */,
 			);
 			path = RBSP;
 			sourceTree = "<group>";
@@ -191,6 +195,7 @@
 				E8B9F03C1AFD585B009159B4 /* Monad.swift in Sources */,
 				E81E0FE01B10C3FD000079CA /* SDParse.swift in Sources */,
 				E81E0FDE1B10C3FD000079CA /* BitParse.swift in Sources */,
+				E861558D1B11F76E006F56D1 /* RBSP.swift in Sources */,
 				E81E0FD71B10C271000079CA /* H264Parse.swift in Sources */,
 				E81CBD471B05400C00EFD26B /* ByteStream.swift in Sources */,
 				E81CBD431B053C9200EFD26B /* MVCExtensions.swift in Sources */,
