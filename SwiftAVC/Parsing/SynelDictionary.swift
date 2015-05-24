@@ -117,4 +117,10 @@ struct SynelDictionary {
         return SynelDictionary(dictionary: copyDict)
     }
 
+    func removeKey(key: Synel) -> SynelDictionary {
+        var copyDict = _dictionary
+        copyDict.removeValueForKey(key)
+        return SynelDictionary(dictionary: copyDict)
+    }
+    
 }
