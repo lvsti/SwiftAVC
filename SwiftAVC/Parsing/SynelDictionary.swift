@@ -17,12 +17,12 @@ enum SynelValue {
 struct SynelDictionary {
     private let _dictionary: [Synel:SynelValue]
     
-    private init(dictionary: [Synel:SynelValue] = [:]) {
+    private init(dictionary: [Synel:SynelValue]) {
         _dictionary = dictionary
     }
     
-    static func empty() -> SynelDictionary {
-        return SynelDictionary()
+    init() {
+        _dictionary = [:]
     }
     
     func hasKey(key: Synel) -> Bool {

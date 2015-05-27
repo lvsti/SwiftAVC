@@ -141,7 +141,7 @@ struct NALUnitSynel {
 func parseNALUnitBytes(bytes: NSData) -> Either<String, NALUnit> {
     let bs = Bitstream(data: bytes)
     let bps = BitParseState(bitstream: bs, offset: 0)
-    let sdps = SDParseState(bitPS: bps, dictionary: SynelDictionary.empty())
+    let sdps = SDParseState(bitPS: bps, dictionary: SynelDictionary())
     let hps = H264ParseState(parseState: sdps, context: H264Context())
 
     let nalParse =
