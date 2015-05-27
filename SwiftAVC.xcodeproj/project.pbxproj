@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80E639C1B16586800AF960C /* VUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E639B1B16586800AF960C /* VUI.swift */; };
+		E80E639E1B1664A900AF960C /* HRD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E639D1B1664A900AF960C /* HRD.swift */; };
 		E819BC471AFAA94D006B79E5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819BC461AFAA94D006B79E5 /* main.swift */; };
 		E81CBD431B053C9200EFD26B /* MVCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CBD421B053C9200EFD26B /* MVCExtensions.swift */; };
 		E81CBD451B053DC900EFD26B /* H264Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CBD441B053DC900EFD26B /* H264Context.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E80E639B1B16586800AF960C /* VUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VUI.swift; sourceTree = "<group>"; };
+		E80E639D1B1664A900AF960C /* HRD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HRD.swift; sourceTree = "<group>"; };
 		E819BC431AFAA94D006B79E5 /* SwiftAVC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftAVC; sourceTree = BUILT_PRODUCTS_DIR; };
 		E819BC461AFAA94D006B79E5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E81CBD401B053C8000EFD26B /* NAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAL.swift; sourceTree = "<group>"; };
@@ -123,7 +127,9 @@
 			isa = PBXGroup;
 			children = (
 				E81E0FD61B10C271000079CA /* H264Parse.swift */,
+				E80E639D1B1664A900AF960C /* HRD.swift */,
 				E861558C1B11F76E006F56D1 /* RBSP.swift */,
+				E80E639B1B16586800AF960C /* VUI.swift */,
 			);
 			path = RBSP;
 			sourceTree = "<group>";
@@ -186,6 +192,8 @@
 			files = (
 				E81E0FDF1B10C3FD000079CA /* Bitstream.swift in Sources */,
 				E819BC471AFAA94D006B79E5 /* main.swift in Sources */,
+				E80E639C1B16586800AF960C /* VUI.swift in Sources */,
+				E80E639E1B1664A900AF960C /* HRD.swift in Sources */,
 				E8BD3D721B054E36006619A5 /* SVCExtensions.swift in Sources */,
 				E81E0FE21B10C3FD000079CA /* SyntaxElement.swift in Sources */,
 				E8BD3D711B054E30006619A5 /* NAL.swift in Sources */,
