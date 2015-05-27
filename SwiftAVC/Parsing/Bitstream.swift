@@ -27,7 +27,7 @@ struct Bitstream {
         let startIdx = offset / 8
         let endIdx = (offset + count) / 8
         
-        if endIdx >= data.length {
+        if offset + count > self.length {
             return nil
         }
         
