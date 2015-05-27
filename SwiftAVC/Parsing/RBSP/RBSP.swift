@@ -17,6 +17,8 @@ struct RBSPSynel {
 func parseRBSPTrailingBits() -> H264Parse {
     return
         parseS(RBSPSynel.rbspStopOneBit) >-
-        parseWhile({ $0.bitParseState.offset % 8 != 0 }, parseS(RBSPSynel.rbspAlignmentZeroBit))
+        parseWhile({ $0.bitParseState.offset % 8 != 0 }) {
+            parseS(RBSPSynel.rbspAlignmentZeroBit)
+        }
 }
 

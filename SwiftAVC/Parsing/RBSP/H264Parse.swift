@@ -76,40 +76,40 @@ func parseForEach<A>(values: [A], parser: A -> H264Parse) -> H264Parse {
     return chain
 }
 
-func parseWhenSD(predicate: SynelDictionary -> Bool, parse: H264Parse) -> H264Parse {
+func parseIfSD(predicate: SynelDictionary -> Bool, parse: () -> H264Parse) -> H264Parse {
     return H264Parse.get() >>- { hps in
         if predicate(hps.dictionary) {
-            return parse
+            return parse()
         }
         
         return H264Parse.unit(())
     }
 }
 
-func parseWhileSD(predicate: SynelDictionary -> Bool, parse: H264Parse) -> H264Parse {
+func parseWhileSD(predicate: SynelDictionary -> Bool, parse: () -> H264Parse) -> H264Parse {
     return H264Parse.get() >>- { hps in
         if predicate(hps.dictionary) {
-            return parse >- parseWhileSD(predicate, parse)
+            return parse() >- parseWhileSD(predicate, parse)
         }
         
         return H264Parse.unit(())
     }
 }
 
-func parseWhen(predicate: H264ParseState -> Bool, parse: H264Parse) -> H264Parse {
+func parseIf(predicate: H264ParseState -> Bool, parse: () -> H264Parse) -> H264Parse {
     return H264Parse.get() >>- { hps in
         if predicate(hps) {
-            return parse
+            return parse()
         }
         
         return H264Parse.unit(())
     }
 }
 
-func parseWhile(predicate: H264ParseState -> Bool, parse: H264Parse) -> H264Parse {
+func parseWhile(predicate: H264ParseState -> Bool, parse: () -> H264Parse) -> H264Parse {
     return H264Parse.get() >>- { hps in
         if predicate(hps) {
-            return parse >- parseWhile(predicate, parse)
+            return parse() >- parseWhile(predicate, parse)
         }
         
         return H264Parse.unit(())
