@@ -33,7 +33,7 @@ public struct Box<A> {
     }
 }
 
-enum Either<E,A> {
+public enum Either<E,A> {
     case Left(Box<E>)
     case Right(Box<A>)
 }

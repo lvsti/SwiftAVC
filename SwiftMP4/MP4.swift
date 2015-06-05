@@ -159,7 +159,7 @@ func parseBoxes() -> MP4Parse {
 }
 
 
-func parseMP4Data(data: NSData) -> Either<MP4ParseError, [MP4Box]> {
+public func parseMP4Data(data: NSData) -> Either<MP4ParseError, [MP4Box]> {
     let mps = MP4ParseState(data: data)
     let (result, state) = parseBoxes().runMP4Parse(mps)
     switch result {

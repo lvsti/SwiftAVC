@@ -32,7 +32,7 @@ extension FourCharCode {
 }
 
 
-struct MP4BoxType {
+public struct MP4BoxType {
     let fourCC: FourCharCode
     
     static let fileType = MP4BoxType(fourCCString: "ftyp")
@@ -54,30 +54,30 @@ struct MP4BoxType {
 }
 
 extension MP4BoxType : Equatable, Hashable {
-    var hashValue: Int { get { return Int(self.fourCC) } }
+    public var hashValue: Int { get { return Int(self.fourCC) } }
 }
 
-func ==(lhs: MP4BoxType, rhs: MP4BoxType) -> Bool {
+public func ==(lhs: MP4BoxType, rhs: MP4BoxType) -> Bool {
     return lhs.fourCC == rhs.fourCC
 }
 
 extension MP4BoxType : Printable {
-    var description: String { get {
+    public var description: String { get {
         return self.fourCC.toString()
     } }
 }
 
 
-struct MP4Box {
-    let properties: [MP4Synel:MP4SynelValue]
-    let frameRange: NSRange
-    let payloadRange: NSRange
-    let children: [MP4Box]
+public struct MP4Box {
+    public let properties: [MP4Synel:MP4SynelValue]
+    public let frameRange: NSRange
+    public let payloadRange: NSRange
+    public let children: [MP4Box]
     
-    var type: MP4BoxType { get {
+    public var type: MP4BoxType { get {
         return MP4BoxType(fourCC: properties[MP4BoxSynel.type]!.toU32s![0])
     } }
-    var size: Int { get {
+    public var size: Int { get {
         return frameRange.length
     } }
 }

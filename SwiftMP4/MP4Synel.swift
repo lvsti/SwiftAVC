@@ -8,31 +8,31 @@
 
 import Foundation
 
-enum MP4SynelBits: Int {
+public enum MP4SynelBits: Int {
     case u8 = 8, u16 = 16, u32 = 32, u64 = 64
 }
 
 
-struct MP4Synel: Equatable, Comparable {
-    let name: String
-    let type: (bits: MP4SynelBits, count: Int?)
+public struct MP4Synel: Equatable, Comparable {
+    public let name: String
+    public let type: (bits: MP4SynelBits, count: Int?)
 
-    static let anyCount: Int? = nil
+    public static let anyCount: Int? = nil
 }
 
 extension MP4Synel: Hashable {
-    var hashValue: Int { get { return name.hashValue } }
+    public var hashValue: Int { get { return name.hashValue } }
 }
 
-func ==(lhs: MP4Synel, rhs: MP4Synel) -> Bool {
+public func ==(lhs: MP4Synel, rhs: MP4Synel) -> Bool {
     return lhs.name == rhs.name
 }
 
-func <(lhs: MP4Synel, rhs: MP4Synel) -> Bool {
+public func <(lhs: MP4Synel, rhs: MP4Synel) -> Bool {
     return lhs.name < rhs.name
 }
 
-enum MP4SynelValue {
+public enum MP4SynelValue {
     case UInt8([Swift.UInt8])
     case UInt16([Swift.UInt16])
     case UInt32([Swift.UInt32])

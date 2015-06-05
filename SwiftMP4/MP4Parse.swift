@@ -63,7 +63,7 @@ struct MP4ParseState {
 
 
 
-typealias MP4ParseError = String
+public typealias MP4ParseError = String
 
 typealias MP4FourCCParse = EitherState<MP4ParseError, MP4ParseState, String>
 typealias MP4Parse = EitherState<MP4ParseError, MP4ParseState, ()>
