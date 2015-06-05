@@ -24,3 +24,4 @@ nalUnitRangesFromByteStream(data)
     .map { data.subdataWithRange($0) }
     .map { parseNALUnitBytes($0) }
     .map(processNALParseResult)
+

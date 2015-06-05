@@ -7,27 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E80E639C1B16586800AF960C /* VUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E639B1B16586800AF960C /* VUI.swift */; };
-		E80E639E1B1664A900AF960C /* HRD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80E639D1B1664A900AF960C /* HRD.swift */; };
-		E819BC471AFAA94D006B79E5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819BC461AFAA94D006B79E5 /* main.swift */; };
-		E81CBD431B053C9200EFD26B /* MVCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CBD421B053C9200EFD26B /* MVCExtensions.swift */; };
-		E81CBD451B053DC900EFD26B /* H264Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CBD441B053DC900EFD26B /* H264Context.swift */; };
-		E81CBD471B05400C00EFD26B /* ByteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CBD461B05400C00EFD26B /* ByteStream.swift */; };
-		E81E0FD71B10C271000079CA /* H264Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E0FD61B10C271000079CA /* H264Parse.swift */; };
-		E81E0FDE1B10C3FD000079CA /* BitParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E0FD81B10C3FD000079CA /* BitParse.swift */; };
-		E81E0FDF1B10C3FD000079CA /* Bitstream.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E0FD91B10C3FD000079CA /* Bitstream.swift */; };
-		E81E0FE01B10C3FD000079CA /* SDParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E0FDA1B10C3FD000079CA /* SDParse.swift */; };
-		E81E0FE11B10C3FD000079CA /* SynelDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E0FDB1B10C3FD000079CA /* SynelDictionary.swift */; };
-		E81E0FE21B10C3FD000079CA /* SyntaxElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E0FDC1B10C3FD000079CA /* SyntaxElement.swift */; };
-		E81E0FE31B10C3FD000079CA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E0FDD1B10C3FD000079CA /* Utils.swift */; };
-		E861558D1B11F76E006F56D1 /* RBSP.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861558C1B11F76E006F56D1 /* RBSP.swift */; };
-		E8B9F03C1AFD585B009159B4 /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B9F03B1AFD585B009159B4 /* Monad.swift */; };
-		E8BD3D711B054E30006619A5 /* NAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CBD401B053C8000EFD26B /* NAL.swift */; };
-		E8BD3D721B054E36006619A5 /* SVCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CBD411B053C8000EFD26B /* SVCExtensions.swift */; };
+		E86E606F1B22379200974F38 /* SwiftMP4.h in Headers */ = {isa = PBXBuildFile; fileRef = E86E606E1B22379200974F38 /* SwiftMP4.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E86E60871B2237F400974F38 /* MP4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60831B2237F400974F38 /* MP4.swift */; };
+		E86E60881B2237F400974F38 /* MP4Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60841B2237F400974F38 /* MP4Box.swift */; };
+		E86E60891B2237F400974F38 /* MP4Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60851B2237F400974F38 /* MP4Parse.swift */; };
+		E86E608A1B2237F400974F38 /* MP4Synel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60861B2237F400974F38 /* MP4Synel.swift */; };
+		E86E60B41B223B8000974F38 /* SwiftAVC.h in Headers */ = {isa = PBXBuildFile; fileRef = E86E60B31B223B8000974F38 /* SwiftAVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E86E60CA1B223C4800974F38 /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60C91B223C4800974F38 /* Monad.swift */; };
+		E86E60CB1B223C4800974F38 /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60C91B223C4800974F38 /* Monad.swift */; };
+		E86E60D31B223C9E00974F38 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60D21B223C9E00974F38 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E819BC411AFAA94C006B79E5 /* CopyFiles */ = {
+		E86E60CE1B223C9E00974F38 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -41,13 +33,12 @@
 /* Begin PBXFileReference section */
 		E80E639B1B16586800AF960C /* VUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VUI.swift; sourceTree = "<group>"; };
 		E80E639D1B1664A900AF960C /* HRD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HRD.swift; sourceTree = "<group>"; };
-		E819BC431AFAA94D006B79E5 /* SwiftAVC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftAVC; sourceTree = BUILT_PRODUCTS_DIR; };
-		E819BC461AFAA94D006B79E5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E81CBD401B053C8000EFD26B /* NAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAL.swift; sourceTree = "<group>"; };
 		E81CBD411B053C8000EFD26B /* SVCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVCExtensions.swift; sourceTree = "<group>"; };
 		E81CBD421B053C9200EFD26B /* MVCExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MVCExtensions.swift; sourceTree = "<group>"; };
 		E81CBD441B053DC900EFD26B /* H264Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H264Context.swift; sourceTree = "<group>"; };
 		E81CBD461B05400C00EFD26B /* ByteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteStream.swift; sourceTree = "<group>"; };
+		E81E0FD41B10C1DB000079CA /* SPS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPS.swift; sourceTree = "<group>"; };
 		E81E0FD61B10C271000079CA /* H264Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H264Parse.swift; sourceTree = "<group>"; };
 		E81E0FD81B10C3FD000079CA /* BitParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitParse.swift; sourceTree = "<group>"; };
 		E81E0FD91B10C3FD000079CA /* Bitstream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bitstream.swift; sourceTree = "<group>"; };
@@ -56,11 +47,38 @@
 		E81E0FDC1B10C3FD000079CA /* SyntaxElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxElement.swift; sourceTree = "<group>"; };
 		E81E0FDD1B10C3FD000079CA /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E861558C1B11F76E006F56D1 /* RBSP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBSP.swift; sourceTree = "<group>"; };
-		E8B9F03B1AFD585B009159B4 /* Monad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monad.swift; sourceTree = "<group>"; };
+		E861558E1B11FA4A006F56D1 /* ScalingList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalingList.swift; sourceTree = "<group>"; };
+		E86E606A1B22379200974F38 /* SwiftMP4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMP4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E86E606D1B22379200974F38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E86E606E1B22379200974F38 /* SwiftMP4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftMP4.h; sourceTree = "<group>"; };
+		E86E60831B2237F400974F38 /* MP4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4.swift; sourceTree = "<group>"; };
+		E86E60841B2237F400974F38 /* MP4Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4Box.swift; sourceTree = "<group>"; };
+		E86E60851B2237F400974F38 /* MP4Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4Parse.swift; sourceTree = "<group>"; };
+		E86E60861B2237F400974F38 /* MP4Synel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4Synel.swift; sourceTree = "<group>"; };
+		E86E60AF1B223B8000974F38 /* SwiftAVC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftAVC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E86E60B21B223B8000974F38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = SwiftAVC/Info.plist; sourceTree = "<group>"; };
+		E86E60B31B223B8000974F38 /* SwiftAVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftAVC.h; sourceTree = "<group>"; };
+		E86E60C91B223C4800974F38 /* Monad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monad.swift; sourceTree = "<group>"; };
+		E86E60D01B223C9E00974F38 /* SwiftDecoder */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftDecoder; sourceTree = BUILT_PRODUCTS_DIR; };
+		E86E60D21B223C9E00974F38 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E819BC401AFAA94C006B79E5 /* Frameworks */ = {
+		E86E60661B22379200974F38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E86E60AB1B223B8000974F38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E86E60CD1B223C9E00974F38 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -73,7 +91,10 @@
 		E819BC3A1AFAA94C006B79E5 = {
 			isa = PBXGroup;
 			children = (
+				E86E60C81B223C4800974F38 /* Common */,
 				E819BC451AFAA94D006B79E5 /* SwiftAVC */,
+				E86E606B1B22379200974F38 /* SwiftMP4 */,
+				E86E60D11B223C9E00974F38 /* SwiftDecoder */,
 				E819BC441AFAA94D006B79E5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,7 +102,9 @@
 		E819BC441AFAA94D006B79E5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E819BC431AFAA94D006B79E5 /* SwiftAVC */,
+				E86E606A1B22379200974F38 /* SwiftMP4.framework */,
+				E86E60AF1B223B8000974F38 /* SwiftAVC.framework */,
+				E86E60D01B223C9E00974F38 /* SwiftDecoder */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,9 +113,9 @@
 			isa = PBXGroup;
 			children = (
 				E81CBD3E1B053BCB00EFD26B /* Parsing */,
+				E86E60B11B223B8000974F38 /* Supporting Files */,
 				E81CBD441B053DC900EFD26B /* H264Context.swift */,
-				E819BC461AFAA94D006B79E5 /* main.swift */,
-				E8B9F03B1AFD585B009159B4 /* Monad.swift */,
+				E86E60B31B223B8000974F38 /* SwiftAVC.h */,
 			);
 			path = SwiftAVC;
 			sourceTree = "<group>";
@@ -129,21 +152,106 @@
 				E81E0FD61B10C271000079CA /* H264Parse.swift */,
 				E80E639D1B1664A900AF960C /* HRD.swift */,
 				E861558C1B11F76E006F56D1 /* RBSP.swift */,
+				E81E0FD41B10C1DB000079CA /* SPS.swift */,
+				E861558E1B11FA4A006F56D1 /* ScalingList.swift */,
 				E80E639B1B16586800AF960C /* VUI.swift */,
 			);
 			path = RBSP;
 			sourceTree = "<group>";
 		};
+		E86E606B1B22379200974F38 /* SwiftMP4 */ = {
+			isa = PBXGroup;
+			children = (
+				E86E60831B2237F400974F38 /* MP4.swift */,
+				E86E60841B2237F400974F38 /* MP4Box.swift */,
+				E86E60851B2237F400974F38 /* MP4Parse.swift */,
+				E86E60861B2237F400974F38 /* MP4Synel.swift */,
+				E86E606E1B22379200974F38 /* SwiftMP4.h */,
+				E86E606C1B22379200974F38 /* Supporting Files */,
+			);
+			path = SwiftMP4;
+			sourceTree = "<group>";
+		};
+		E86E606C1B22379200974F38 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E86E606D1B22379200974F38 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E86E60B11B223B8000974F38 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E86E60B21B223B8000974F38 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E86E60C81B223C4800974F38 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E86E60C91B223C4800974F38 /* Monad.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E86E60D11B223C9E00974F38 /* SwiftDecoder */ = {
+			isa = PBXGroup;
+			children = (
+				E86E60D21B223C9E00974F38 /* main.swift */,
+			);
+			path = SwiftDecoder;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		E86E60671B22379200974F38 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E86E606F1B22379200974F38 /* SwiftMP4.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E86E60AC1B223B8000974F38 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E86E60B41B223B8000974F38 /* SwiftAVC.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		E819BC421AFAA94C006B79E5 /* SwiftAVC */ = {
+		E86E60691B22379200974F38 /* SwiftMP4 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E819BC4A1AFAA94D006B79E5 /* Build configuration list for PBXNativeTarget "SwiftAVC" */;
+			buildConfigurationList = E86E607D1B22379300974F38 /* Build configuration list for PBXNativeTarget "SwiftMP4" */;
 			buildPhases = (
-				E819BC3F1AFAA94C006B79E5 /* Sources */,
-				E819BC401AFAA94C006B79E5 /* Frameworks */,
-				E819BC411AFAA94C006B79E5 /* CopyFiles */,
+				E86E60651B22379200974F38 /* Sources */,
+				E86E60661B22379200974F38 /* Frameworks */,
+				E86E60671B22379200974F38 /* Headers */,
+				E86E60681B22379200974F38 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftMP4;
+			productName = SwiftMP4;
+			productReference = E86E606A1B22379200974F38 /* SwiftMP4.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E86E60AE1B223B8000974F38 /* SwiftAVC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E86E60C21B223B8000974F38 /* Build configuration list for PBXNativeTarget "SwiftAVC" */;
+			buildPhases = (
+				E86E60AA1B223B8000974F38 /* Sources */,
+				E86E60AB1B223B8000974F38 /* Frameworks */,
+				E86E60AC1B223B8000974F38 /* Headers */,
+				E86E60AD1B223B8000974F38 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -151,7 +259,24 @@
 			);
 			name = SwiftAVC;
 			productName = SwiftAVC;
-			productReference = E819BC431AFAA94D006B79E5 /* SwiftAVC */;
+			productReference = E86E60AF1B223B8000974F38 /* SwiftAVC.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E86E60CF1B223C9E00974F38 /* SwiftDecoder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E86E60D41B223C9E00974F38 /* Build configuration list for PBXNativeTarget "SwiftDecoder" */;
+			buildPhases = (
+				E86E60CC1B223C9E00974F38 /* Sources */,
+				E86E60CD1B223C9E00974F38 /* Frameworks */,
+				E86E60CE1B223C9E00974F38 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftDecoder;
+			productName = SwiftDecoder;
+			productReference = E86E60D01B223C9E00974F38 /* SwiftDecoder */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -163,7 +288,13 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Tamas Lustyik";
 				TargetAttributes = {
-					E819BC421AFAA94C006B79E5 = {
+					E86E60691B22379200974F38 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					E86E60AE1B223B8000974F38 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					E86E60CF1B223C9E00974F38 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
 				};
@@ -180,33 +311,56 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E819BC421AFAA94C006B79E5 /* SwiftAVC */,
+				E86E60691B22379200974F38 /* SwiftMP4 */,
+				E86E60AE1B223B8000974F38 /* SwiftAVC */,
+				E86E60CF1B223C9E00974F38 /* SwiftDecoder */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		E86E60681B22379200974F38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E86E60AD1B223B8000974F38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		E819BC3F1AFAA94C006B79E5 /* Sources */ = {
+		E86E60651B22379200974F38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E81E0FDF1B10C3FD000079CA /* Bitstream.swift in Sources */,
-				E819BC471AFAA94D006B79E5 /* main.swift in Sources */,
-				E80E639C1B16586800AF960C /* VUI.swift in Sources */,
-				E80E639E1B1664A900AF960C /* HRD.swift in Sources */,
-				E8BD3D721B054E36006619A5 /* SVCExtensions.swift in Sources */,
-				E81E0FE21B10C3FD000079CA /* SyntaxElement.swift in Sources */,
-				E8BD3D711B054E30006619A5 /* NAL.swift in Sources */,
-				E81E0FE31B10C3FD000079CA /* Utils.swift in Sources */,
-				E81CBD451B053DC900EFD26B /* H264Context.swift in Sources */,
-				E81E0FE11B10C3FD000079CA /* SynelDictionary.swift in Sources */,
-				E8B9F03C1AFD585B009159B4 /* Monad.swift in Sources */,
-				E81E0FE01B10C3FD000079CA /* SDParse.swift in Sources */,
-				E81E0FDE1B10C3FD000079CA /* BitParse.swift in Sources */,
-				E861558D1B11F76E006F56D1 /* RBSP.swift in Sources */,
-				E81E0FD71B10C271000079CA /* H264Parse.swift in Sources */,
-				E81CBD471B05400C00EFD26B /* ByteStream.swift in Sources */,
-				E81CBD431B053C9200EFD26B /* MVCExtensions.swift in Sources */,
+				E86E60871B2237F400974F38 /* MP4.swift in Sources */,
+				E86E60CA1B223C4800974F38 /* Monad.swift in Sources */,
+				E86E608A1B2237F400974F38 /* MP4Synel.swift in Sources */,
+				E86E60891B2237F400974F38 /* MP4Parse.swift in Sources */,
+				E86E60881B2237F400974F38 /* MP4Box.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E86E60AA1B223B8000974F38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E86E60CB1B223C4800974F38 /* Monad.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E86E60CC1B223C9E00974F38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E86E60D31B223C9E00974F38 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,14 +442,106 @@
 			};
 			name = Release;
 		};
-		E819BC4B1AFAA94D006B79E5 /* Debug */ = {
+		E86E607E1B22379300974F38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftMP4/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E86E607F1B22379300974F38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftMP4/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E86E60C31B223B8000974F38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftAVC/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E86E60C41B223B8000974F38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftAVC/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E86E60D51B223C9E00974F38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		E819BC4C1AFAA94D006B79E5 /* Release */ = {
+		E86E60D61B223C9E00974F38 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -314,14 +560,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E819BC4A1AFAA94D006B79E5 /* Build configuration list for PBXNativeTarget "SwiftAVC" */ = {
+		E86E607D1B22379300974F38 /* Build configuration list for PBXNativeTarget "SwiftMP4" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E819BC4B1AFAA94D006B79E5 /* Debug */,
-				E819BC4C1AFAA94D006B79E5 /* Release */,
+				E86E607E1B22379300974F38 /* Debug */,
+				E86E607F1B22379300974F38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		};
+		E86E60C21B223B8000974F38 /* Build configuration list for PBXNativeTarget "SwiftAVC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E86E60C31B223B8000974F38 /* Debug */,
+				E86E60C41B223B8000974F38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E86E60D41B223C9E00974F38 /* Build configuration list for PBXNativeTarget "SwiftDecoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E86E60D51B223C9E00974F38 /* Debug */,
+				E86E60D61B223C9E00974F38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
