@@ -8,12 +8,6 @@
 
 import Foundation
 
-struct MP4FileTypeBoxSynel {
-    static let majorBrand = MP4Synel(name: "major_brand", type: (.u32, 1))
-    static let minorVersion = MP4Synel(name: "minor_version", type: (.u32, 1))
-    static let compatibleBrands = MP4Synel(name: "compatible_brands", type: (.u32, MP4Synel.anyCount))
-}
-
 
 struct MP4TempSynel {
     static let boxStartOffset = Synel(name: "tmp_boxStartOffset", type: (.u32, 1))
@@ -21,6 +15,9 @@ struct MP4TempSynel {
 }
 
 let boxRegistry: [FourCharCode : MP4Box] = [
+    FileTypeBox.fourCC: FileTypeBox(),
+    MovieHeaderBox.fourCC: MovieHeaderBox(),
+    TrackHeaderBox.fourCC: TrackHeaderBox()
 ]
 
 
