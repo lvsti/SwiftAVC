@@ -115,7 +115,7 @@ func parseBox() -> MP4Parse {
                 switch (ppResult) {
                 case .Left(let errorBox):
                     let type = mps.dictionary[MP4BoxSynel.type]!.toU32s![0]
-                    return MP4Parse.fail("failed to parse payload of '\(FourCharCode.toString(type))': \(errorBox.unbox())")
+                    return MP4Parse.fail("failed to parse payload of '\(FourCharCode.toString(type))': \(errorBox.unwrap())")
                 case .Right(_): children = ppState.boxes
                 }
             }
@@ -164,6 +164,6 @@ public func parseMP4Data(data: NSData) -> Either<MP4ParseError, [BoxDescriptor]>
     let (result, state) = parseBoxes().runMP4Parse(mps)
     switch result {
     case .Left(let errorBox): return .Left(errorBox)
-    case .Right(_): return .Right(Box(state.boxes))
+    case .Right(_): return .Right(Wrap(state.boxes))
     }
 }

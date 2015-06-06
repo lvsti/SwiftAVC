@@ -25,32 +25,32 @@ protocol Monad {
 }
 
 
-public struct Box<A> {
-    public let unbox : () -> A
+public struct Wrap<A> {
+    public let unwrap : () -> A
     
     public init(_ x : A) {
-        unbox = { x }
+        unwrap = { x }
     }
 }
 
 public enum Either<E,A> {
-    case Left(Box<E>)
-    case Right(Box<A>)
+    case Left(Wrap<E>)
+    case Right(Wrap<A>)
 }
 
 struct EitherState<E,S,A1> {
     let runEitherState: S -> (Either<E,A1>, S)
 
     static func get() -> EitherState<E,S,S> {
-        return EitherState<E,S,S> { s in (.Right(Box(s)), s) }
+        return EitherState<E,S,S> { s in (.Right(Wrap(s)), s) }
     }
     
     static func put(s: S) -> EitherState<E,S,()> {
-        return EitherState<E,S,()> { _ in (.Right(Box(())), s) }
+        return EitherState<E,S,()> { _ in (.Right(Wrap(())), s) }
     }
     
     static func fail(error: E) -> EitherState<E,S,A1> {
-        return EitherState<E,S,A1> { s in (.Left(Box(error)), s) }
+        return EitherState<E,S,A1> { s in (.Left(Wrap(error)), s) }
     }
 }
 
@@ -61,7 +61,7 @@ extension EitherState: Monad {
     typealias MB = EitherState<E,S,B>
     
     static func unit(x: A) -> EitherState<E,S,A> {
-        return EitherState<E,S,A> { s in (.Right(Box(x)), s) }
+        return EitherState<E,S,A> { s in (.Right(Wrap(x)), s) }
     }
     
     func bind<B>(f: A -> EitherState<E,S,B>) -> EitherState<E,S,B> {
@@ -69,7 +69,7 @@ extension EitherState: Monad {
             let (ea, s1) = self.runEitherState(s)
             switch ea {
             case .Left(let error): return (.Left(error), s1)
-            case .Right(let box): return f(box.unbox()).runEitherState(s1)
+            case .Right(let wrap): return f(wrap.unwrap()).runEitherState(s1)
             }
         }
     }
