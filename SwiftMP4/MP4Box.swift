@@ -9,7 +9,7 @@
 import Foundation
 
 extension FourCharCode {
-    static func fromString(str: String) -> FourCharCode {
+    public static func fromString(str: String) -> FourCharCode {
         let chars = str.fileSystemRepresentation()
         assert(chars.count == 5)
         
@@ -21,7 +21,7 @@ extension FourCharCode {
         return result
     }
     
-    func toString() -> String {
+    public func toString() -> String {
         var result = ""
         for i in 0...3 {
             let ch = (self >> (24 - i*8)) & 0xff

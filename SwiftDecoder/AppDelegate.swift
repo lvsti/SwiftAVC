@@ -9,6 +9,15 @@
 import Cocoa
 import SwiftMP4
 
+func printBox(level: Int)(box: BoxDescriptor) {
+    let tab = String(count: 2*level, repeatedValue: Character(" "))
+    println("\(tab)\(box.type.toString()): frame \(box.frameRange), payload \(box.payloadRange)")
+}
+
+func printBoxes(boxes: [BoxDescriptor], level: Int) {
+    boxes.map(printBox(level))
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -36,12 +45,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let eitherBoxes = SwiftMP4.parseMP4Data(data)
         switch eitherBoxes {
         case .Left(let errorBox):
-            println("MPEG parsing failed: \(errorBox.unbox())")
+            println("MPEG parsing failed: \(errorBox.unwrap())")
             break
             
         case .Right(let valueBox):
-            let boxes = valueBox.unbox()
-            boxes.map { println("\($0.type): frame \($0.frameRange), payload \($0.payloadRange)") }
+            let boxes = valueBox.unwrap()
+            printBoxes(boxes, 0)
             break
         }
 
