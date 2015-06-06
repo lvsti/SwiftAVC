@@ -92,7 +92,20 @@ extension UInt32 : ByteOrderInitializable {}
 extension UInt64 : ByteOrderInitializable {}
 
 
-func parseItems<T : ByteOrderInitializable>(ptr: UnsafePointer<UInt8>, count: Int) -> [T] {
+func parseListOfBigEndianItems<T where T:Equatable, T:ByteOrderInitializable>(ptr: UnsafePointer<UInt8>, terminator: T, canContinue: Int -> Bool) -> [T] {
+    var items: [T] = []
+    var tptr = UnsafePointer<T>(ptr)
+    while canContinue(items.count) {
+        let item = T(bigEndian: tptr[items.count])
+        items.append(item)
+        if item == terminator {
+            break
+        }
+    }
+    return items
+}
+
+func parseBigEndianItems<T : ByteOrderInitializable>(ptr: UnsafePointer<UInt8>, count: Int) -> [T] {
     var items: [T] = []
     var tptr = UnsafePointer<T>(ptr)
     for i in 0..<count {
@@ -117,7 +130,7 @@ func parse(synel: Synel) -> MP4Parse {
                 }
                 itemCount = remainingByteCount / itemSize
             }
-            
+
             if mps.offset + itemSize * itemCount > mps.endOffset {
                 return MP4Parse.fail("unexpected EOS while parsing \(synel.name)")
             }
@@ -125,11 +138,39 @@ func parse(synel: Synel) -> MP4Parse {
             let ptr = UnsafePointer<UInt8>(mps.data.bytes).advancedBy(mps.offset)
             var value: SynelValue
             
-            switch synel.type.0 {
-            case .u8: value = SynelValue.UInt8(parseItems(ptr, itemCount)); break
-            case .u16: value = SynelValue.UInt16(parseItems(ptr, itemCount)); break
-            case .u32: value = SynelValue.UInt32(parseItems(ptr, itemCount)); break
-            case .u64: value = SynelValue.UInt64(parseItems(ptr, itemCount)); break
+            if itemCount > 0 {
+                switch synel.type.0 {
+                case .u8: value = SynelValue.UInt8(parseBigEndianItems(ptr, itemCount)); break
+                case .u16: value = SynelValue.UInt16(parseBigEndianItems(ptr, itemCount)); break
+                case .u32: value = SynelValue.UInt32(parseBigEndianItems(ptr, itemCount)); break
+                case .u64: value = SynelValue.UInt64(parseBigEndianItems(ptr, itemCount)); break
+                }
+            } else {
+                // read up to the null termination
+                let parseCondition: Int -> Bool = { count in mps.offset + itemSize * count < mps.endOffset }
+
+                switch synel.type.0 {
+                case .u8:
+                    var items: [UInt8] = parseListOfBigEndianItems(ptr, 0, parseCondition)
+                    itemCount = items.count
+                    value = SynelValue.UInt8(items)
+                    break
+                case .u16:
+                    var items: [UInt16] = parseListOfBigEndianItems(ptr, 0, parseCondition)
+                    itemCount = items.count
+                    value = SynelValue.UInt16(items)
+                    break
+                case .u32:
+                    var items: [UInt32] = parseListOfBigEndianItems(ptr, 0, parseCondition)
+                    itemCount = items.count
+                    value = SynelValue.UInt32(items)
+                    break
+                case .u64:
+                    var items: [UInt64] = parseListOfBigEndianItems(ptr, 0, parseCondition)
+                    itemCount = items.count
+                    value = SynelValue.UInt64(items)
+                    break
+                }
             }
             
             let newMPS = mps.settingValue(value, forKey: synel).advancedBy(itemSize * itemCount)

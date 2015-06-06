@@ -25,6 +25,7 @@ public struct Synel: Equatable, Comparable {
     }
 
     static let anyCount: Int? = nil
+    static let nullTerminated: Int? = 0
 }
 
 extension Synel: Hashable {
