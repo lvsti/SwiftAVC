@@ -8,15 +8,16 @@
 
 import Foundation
 
+typealias SynelDictionary = [Synel:SynelValue]
 
 struct MP4ParseState {
     let data: NSData
     let offset: Int
     let endOffset: Int
-    let boxes: [MP4Box]
-    let dictionary: [MP4Synel:MP4SynelValue]
+    let boxes: [BoxDescriptor]
+    let dictionary: SynelDictionary
     
-    init(data: NSData, offset: Int = 0, endOffset: Int? = nil, boxes: [MP4Box] = [], dictionary: [MP4Synel:MP4SynelValue] = [:]) {
+    init(data: NSData, offset: Int = 0, endOffset: Int? = nil, boxes: [BoxDescriptor] = [], dictionary: SynelDictionary = SynelDictionary()) {
         self.data = data
         self.offset = offset
         self.endOffset = endOffset != nil ? endOffset! : self.data.length
@@ -32,7 +33,7 @@ struct MP4ParseState {
                              dictionary: self.dictionary)
     }
     
-    func committingBox(box: MP4Box) -> MP4ParseState {
+    func committingBox(box: BoxDescriptor) -> MP4ParseState {
         var newBoxes = self.boxes
         newBoxes.append(box)
         return MP4ParseState(data: self.data,
@@ -42,7 +43,7 @@ struct MP4ParseState {
                              dictionary: [:])
     }
     
-    func settingValue(value: MP4SynelValue, forKey key: MP4Synel) -> MP4ParseState {
+    func settingValue(value: SynelValue, forKey key: Synel) -> MP4ParseState {
         var newDictionary = self.dictionary
         newDictionary.updateValue(value, forKey: key)
         return MP4ParseState(data: self.data,
@@ -100,7 +101,7 @@ func parseItems<T : ByteOrderInitializable>(ptr: UnsafePointer<UInt8>, count: In
     return items
 }
 
-func parse(synel: MP4Synel) -> MP4Parse {
+func parse(synel: Synel) -> MP4Parse {
     return
         MP4Parse.get() >>-
         mp4Lambda { mps in
@@ -122,13 +123,13 @@ func parse(synel: MP4Synel) -> MP4Parse {
             }
             
             let ptr = UnsafePointer<UInt8>(mps.data.bytes).advancedBy(mps.offset)
-            var value: MP4SynelValue
+            var value: SynelValue
             
             switch synel.type.0 {
-            case .u8: value = MP4SynelValue.UInt8(parseItems(ptr, itemCount)); break
-            case .u16: value = MP4SynelValue.UInt16(parseItems(ptr, itemCount)); break
-            case .u32: value = MP4SynelValue.UInt32(parseItems(ptr, itemCount)); break
-            case .u64: value = MP4SynelValue.UInt64(parseItems(ptr, itemCount)); break
+            case .u8: value = SynelValue.UInt8(parseItems(ptr, itemCount)); break
+            case .u16: value = SynelValue.UInt16(parseItems(ptr, itemCount)); break
+            case .u32: value = SynelValue.UInt32(parseItems(ptr, itemCount)); break
+            case .u64: value = SynelValue.UInt64(parseItems(ptr, itemCount)); break
             }
             
             let newMPS = mps.settingValue(value, forKey: synel).advancedBy(itemSize * itemCount)

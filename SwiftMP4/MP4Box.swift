@@ -67,12 +67,11 @@ extension MP4BoxType : Printable {
     } }
 }
 
-
-public struct MP4Box {
-    public let properties: [MP4Synel:MP4SynelValue]
+public struct BoxDescriptor {
+    public let properties: [Synel:SynelValue]
     public let frameRange: NSRange
     public let payloadRange: NSRange
-    public let children: [MP4Box]
+    public let children: [BoxDescriptor]
     
     public var type: MP4BoxType { get {
         return MP4BoxType(fourCC: properties[MP4BoxSynel.type]!.toU32s![0])

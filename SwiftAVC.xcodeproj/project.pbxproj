@@ -11,7 +11,7 @@
 		E86E60871B2237F400974F38 /* MP4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60831B2237F400974F38 /* MP4.swift */; };
 		E86E60881B2237F400974F38 /* MP4Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60841B2237F400974F38 /* MP4Box.swift */; };
 		E86E60891B2237F400974F38 /* MP4Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60851B2237F400974F38 /* MP4Parse.swift */; };
-		E86E608A1B2237F400974F38 /* MP4Synel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60861B2237F400974F38 /* MP4Synel.swift */; };
+		E86E608A1B2237F400974F38 /* Synel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60861B2237F400974F38 /* Synel.swift */; };
 		E86E60B41B223B8000974F38 /* SwiftAVC.h in Headers */ = {isa = PBXBuildFile; fileRef = E86E60B31B223B8000974F38 /* SwiftAVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E86E60CA1B223C4800974F38 /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60C91B223C4800974F38 /* Monad.swift */; };
 		E86E60CB1B223C4800974F38 /* Monad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60C91B223C4800974F38 /* Monad.swift */; };
@@ -69,7 +69,7 @@
 		E86E60831B2237F400974F38 /* MP4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4.swift; sourceTree = "<group>"; };
 		E86E60841B2237F400974F38 /* MP4Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4Box.swift; sourceTree = "<group>"; };
 		E86E60851B2237F400974F38 /* MP4Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4Parse.swift; sourceTree = "<group>"; };
-		E86E60861B2237F400974F38 /* MP4Synel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4Synel.swift; sourceTree = "<group>"; };
+		E86E60861B2237F400974F38 /* Synel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Synel.swift; sourceTree = "<group>"; };
 		E86E60AF1B223B8000974F38 /* SwiftAVC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftAVC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86E60B21B223B8000974F38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = SwiftAVC/Info.plist; sourceTree = "<group>"; };
 		E86E60B31B223B8000974F38 /* SwiftAVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftAVC.h; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 				E86E60831B2237F400974F38 /* MP4.swift */,
 				E86E60841B2237F400974F38 /* MP4Box.swift */,
 				E86E60851B2237F400974F38 /* MP4Parse.swift */,
-				E86E60861B2237F400974F38 /* MP4Synel.swift */,
+				E86E60861B2237F400974F38 /* Synel.swift */,
 				E86E606E1B22379200974F38 /* SwiftMP4.h */,
 				E86E606C1B22379200974F38 /* Supporting Files */,
 			);
@@ -384,7 +384,7 @@
 			files = (
 				E86E60871B2237F400974F38 /* MP4.swift in Sources */,
 				E86E60CA1B223C4800974F38 /* Monad.swift in Sources */,
-				E86E608A1B2237F400974F38 /* MP4Synel.swift in Sources */,
+				E86E608A1B2237F400974F38 /* Synel.swift in Sources */,
 				E86E60891B2237F400974F38 /* MP4Parse.swift in Sources */,
 				E86E60881B2237F400974F38 /* MP4Box.swift in Sources */,
 			);
