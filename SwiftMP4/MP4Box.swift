@@ -31,40 +31,32 @@ extension FourCharCode {
     }
 }
 
-
-public struct MP4BoxType {
-    let fourCC: FourCharCode
+extension FourCharCode: StringLiteralConvertible {
+    public typealias ExtendedGraphemeClusterLiteralType = String
+    public typealias UnicodeScalarLiteralType = String
     
-    static let fileType = MP4BoxType(fourCCString: "ftyp")
-    static let uuid = MP4BoxType(fourCCString: "uuid")
-    static let movie = MP4BoxType(fourCCString: "moov")
-    static let movieHeader = MP4BoxType(fourCCString: "mvhd")
-    static let track = MP4BoxType(fourCCString: "trak")
-    static let trackHeader = MP4BoxType(fourCCString: "tkhd")
-    static let trackReference = MP4BoxType(fourCCString: "tref")
-    static let mediaData = MP4BoxType(fourCCString: "mdat")
-    
-    init(fourCC: FourCharCode) {
-        self.fourCC = fourCC
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(FourCharCode.fromString(value))
     }
     
-    init(fourCCString: String) {
-        self.fourCC = FourCharCode.fromString(fourCCString)
+    public init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterLiteralType) {
+        self.init(FourCharCode.fromString(value))
+    }
+    
+    public init(unicodeScalarLiteral value: UnicodeScalarLiteralType) {
+        self.init(FourCharCode.fromString(value))
     }
 }
 
-extension MP4BoxType : Equatable, Hashable {
-    public var hashValue: Int { get { return Int(self.fourCC) } }
+extension FourCharCode: Printable {
+    public var description: String { get { return self.toString() } }
 }
 
-public func ==(lhs: MP4BoxType, rhs: MP4BoxType) -> Bool {
-    return lhs.fourCC == rhs.fourCC
-}
 
-extension MP4BoxType : Printable {
-    public var description: String { get {
-        return self.fourCC.toString()
-    } }
+protocol MP4Box {
+    class var fourCC: FourCharCode { get }
+    var isFullBox: Bool { get }
+    func boxParse() -> MP4Parse
 }
 
 public struct BoxDescriptor {
@@ -73,8 +65,8 @@ public struct BoxDescriptor {
     public let payloadRange: NSRange
     public let children: [BoxDescriptor]
     
-    public var type: MP4BoxType { get {
-        return MP4BoxType(fourCC: properties[MP4BoxSynel.type]!.toU32s![0])
+    public var type: FourCharCode { get {
+        return properties[Box.type]!.toU32s![0]
     } }
     public var size: Int { get {
         return frameRange.length

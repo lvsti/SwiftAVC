@@ -20,6 +20,8 @@
 		E86E60EA1B22458C00974F38 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86E60E81B22458C00974F38 /* MainMenu.xib */; };
 		E86E60FF1B2245F500974F38 /* SwiftMP4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E86E606A1B22379200974F38 /* SwiftMP4.framework */; };
 		E86E61011B22460600974F38 /* SwiftMP4.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E86E606A1B22379200974F38 /* SwiftMP4.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E86E61081B2256AD00974F38 /* FullBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E61071B2256AD00974F38 /* FullBox.swift */; };
+		E86E610A1B22584E00974F38 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E61091B22584E00974F38 /* Box.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		E86E60E41B22458C00974F38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E86E60E61B22458C00974F38 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E86E60E91B22458C00974F38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E86E61071B2256AD00974F38 /* FullBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullBox.swift; sourceTree = "<group>"; };
+		E86E61091B22584E00974F38 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,7 @@
 		E86E606B1B22379200974F38 /* SwiftMP4 */ = {
 			isa = PBXGroup;
 			children = (
+				E86E61021B2253B400974F38 /* Boxes */,
 				E86E60831B2237F400974F38 /* MP4.swift */,
 				E86E60841B2237F400974F38 /* MP4Box.swift */,
 				E86E60851B2237F400974F38 /* MP4Parse.swift */,
@@ -232,6 +237,15 @@
 				E86E60E31B22458C00974F38 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E86E61021B2253B400974F38 /* Boxes */ = {
+			isa = PBXGroup;
+			children = (
+				E86E61091B22584E00974F38 /* Box.swift */,
+				E86E61071B2256AD00974F38 /* FullBox.swift */,
+			);
+			path = Boxes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,9 +396,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E86E610A1B22584E00974F38 /* Box.swift in Sources */,
 				E86E60871B2237F400974F38 /* MP4.swift in Sources */,
 				E86E60CA1B223C4800974F38 /* Monad.swift in Sources */,
 				E86E608A1B2237F400974F38 /* Synel.swift in Sources */,
+				E86E61081B2256AD00974F38 /* FullBox.swift in Sources */,
 				E86E60891B2237F400974F38 /* MP4Parse.swift in Sources */,
 				E86E60881B2237F400974F38 /* MP4Box.swift in Sources */,
 			);

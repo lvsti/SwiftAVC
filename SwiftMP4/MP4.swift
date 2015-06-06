@@ -8,18 +8,6 @@
 
 import Foundation
 
-struct MP4BoxSynel {
-    static let size = MP4Synel(name: "size", type: (.u32, 1))
-    static let type = MP4Synel(name: "type", type: (.u32, 1))
-    static let largeSize = MP4Synel(name: "largesize", type: (.u64, 1))
-    static let userType = MP4Synel(name: "usertype", type: (.u8, 16))
-}
-
-struct MP4FullBoxSynel {
-    static let version = MP4Synel(name: "version", type: (.u8, 1))
-    static let flags = MP4Synel(name: "flags", type: (.u8, 3))
-}
-
 struct MP4FileTypeBoxSynel {
     static let majorBrand = MP4Synel(name: "major_brand", type: (.u32, 1))
     static let minorVersion = MP4Synel(name: "minor_version", type: (.u32, 1))
@@ -32,19 +20,7 @@ struct MP4TempSynel {
     static let stashedEndOffset = Synel(name: "tmp_stashedEndOffset", type: (.u32, 1))
 }
 
-func parseFullBoxHeader() -> MP4Parse {
-    return
-        parse(MP4FullBoxSynel.version) >-
-        parse(MP4FullBoxSynel.flags)
-}
-
-let mp4BoxParses: [FourCharCode : () -> MP4Parse] = [
-    MP4BoxType.fileType.fourCC: {
-        parse(MP4FileTypeBoxSynel.majorBrand) >-
-        parse(MP4FileTypeBoxSynel.minorVersion) >-
-        parse(MP4FileTypeBoxSynel.compatibleBrands)
-    },
-    
+let boxRegistry: [FourCharCode : MP4Box] = [
 ]
 
 
@@ -56,17 +32,10 @@ func parseBox() -> MP4Parse {
             let newMPS = mps.settingValue(SynelValue.UInt32([UInt32(mps.offset)]), forKey: MP4TempSynel.boxStartOffset)
             return MP4Parse.put(newMPS)
         } >-
-        parse(MP4BoxSynel.size) >-
-        parse(MP4BoxSynel.type) >-
-        parseIf({ mps in mps.dictionary[MP4BoxSynel.size]!.toU32s![0] == 1 }) {
-            parse(MP4BoxSynel.largeSize)
-        } >-
-        parseIf({ mps in mps.dictionary[MP4BoxSynel.type]!.toU32s![0] == MP4BoxType.uuid.fourCC }) {
-            parse(MP4BoxSynel.userType)
-        } >-
+        Box.boxParse() >-
         MP4Parse.get() >>-
         mp4Lambda { mps in
-            let size = mps.dictionary[MP4BoxSynel.size]!.toU32s![0]
+            let size = mps.dictionary[Box.size]!.toU32s![0]
             let lastBoxStartOffset = Int(mps.dictionary[MP4TempSynel.boxStartOffset]!.toU32s![0])
 
             let hasLargeSize = (size == 1)
@@ -75,7 +44,7 @@ func parseBox() -> MP4Parse {
             var frameRange = NSMakeRange(lastBoxStartOffset, 0)
             
             if hasLargeSize {
-                let largeSize = mps.dictionary[MP4BoxSynel.largeSize]!.toU64s![0]
+                let largeSize = mps.dictionary[Box.largeSize]!.toU64s![0]
                 frameRange.length = Int(largeSize)
             } else if extendsToEOF {
                 frameRange.length = mps.data.length - frameRange.location
@@ -90,21 +59,24 @@ func parseBox() -> MP4Parse {
         } >-
         MP4Parse.get() >>-
         mp4Lambda { mps in
-            let type = mps.dictionary[MP4BoxSynel.type]!.toU32s![0]
-            if let boxParse = mp4BoxParses[type] {
-                return boxParse()
+            let type = mps.dictionary[Box.type]!.toU32s![0]
+            if let box = boxRegistry[type] {
+                if box.isFullBox {
+                    return FullBox.boxParse() >- box.boxParse()
+                }
+                return box.boxParse()
             }
             return MP4Parse.unit(())
         } >-
         MP4Parse.get() >>-
         mp4Lambda { mps in
-            let type = mps.dictionary[MP4BoxSynel.type]!.toU32s![0]
+            let type = mps.dictionary[Box.type]!.toU32s![0]
             let lastBoxStartOffset = Int(mps.dictionary[MP4TempSynel.boxStartOffset]!.toU32s![0])
             let frameRange = NSMakeRange(lastBoxStartOffset, mps.endOffset - lastBoxStartOffset)
             let payloadRange = NSMakeRange(mps.offset, mps.endOffset - mps.offset)
             var children: [BoxDescriptor] = []
             
-            let isKnownBoxType = mp4BoxParses[type] != nil
+            let isKnownBoxType = boxRegistry[type] != nil
 
             if payloadRange.length > 0 && isKnownBoxType {
                 // nonempty and known box, parse contents
@@ -114,7 +86,7 @@ func parseBox() -> MP4Parse {
                 let (ppResult, ppState) = parseBoxes().runMP4Parse(payloadMPS)
                 switch (ppResult) {
                 case .Left(let errorBox):
-                    let type = mps.dictionary[MP4BoxSynel.type]!.toU32s![0]
+                    let type = mps.dictionary[Box.type]!.toU32s![0]
                     return MP4Parse.fail("failed to parse payload of '\(FourCharCode.toString(type))': \(errorBox.unwrap())")
                 case .Right(_): children = ppState.boxes
                 }
