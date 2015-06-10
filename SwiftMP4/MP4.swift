@@ -16,8 +16,31 @@ struct MP4TempSynel {
 
 let boxRegistry: [FourCharCode : MP4Box] = [
     FileTypeBox.fourCC: FileTypeBox(),
+    MovieBox.fourCC: MovieBox(),
     MovieHeaderBox.fourCC: MovieHeaderBox(),
-    TrackHeaderBox.fourCC: TrackHeaderBox()
+    TrackBox.fourCC: TrackBox(),
+    TrackHeaderBox.fourCC: TrackHeaderBox(),
+    HintTrackReferenceBox.fourCC: HintTrackReferenceBox(),
+    DescriptionTrackReferenceBox.fourCC: DescriptionTrackReferenceBox(),
+    HintDependencyTrackReferenceBox.fourCC: HintDependencyTrackReferenceBox(),
+    VideoDepthTrackReferenceBox.fourCC: VideoDepthTrackReferenceBox(),
+    VideoParallaxTrackReferenceBox.fourCC: VideoParallaxTrackReferenceBox(),
+    TrackGroupBox.fourCC: TrackGroupBox(),
+    MultiSourceTrackGroupTypeBox.fourCC: MultiSourceTrackGroupTypeBox(),
+    MediaBox.fourCC: MediaBox(),
+    MediaHeaderBox.fourCC: MediaHeaderBox(),
+    HandlerReferenceBox.fourCC: HandlerReferenceBox(),
+    MediaInformationBox.fourCC: MediaInformationBox(),
+    VideoMediaHeaderBox.fourCC: VideoMediaHeaderBox(),
+    SoundMediaHeaderBox.fourCC: SoundMediaHeaderBox(),
+    HintMediaHeaderBox.fourCC: HintMediaHeaderBox(),
+    NullMediaHeaderBox.fourCC: NullMediaHeaderBox(),
+    MediaDataBox.fourCC: MediaDataBox(),
+    EditBox.fourCC: EditBox(),
+    EditListBox.fourCC: EditListBox(),
+    SampleTableBox.fourCC: SampleTableBox(),
+    SampleSizeBox.fourCC: SampleSizeBox(),
+    ChunkOffsetBox.fourCC: ChunkOffsetBox()
 ]
 
 
@@ -107,6 +130,16 @@ func parseIf(predicate: MP4ParseState -> Bool, parse: () -> MP4Parse) -> MP4Pars
         mp4Lambda { mps in
             predicate(mps) ? parse() : MP4Parse.unit(())
         }
+}
+
+func parseForEach<A>(values: [A], parser: A -> MP4Parse) -> MP4Parse {
+    var chain = MP4Parse.unit(())
+    
+    for value in values {
+        chain = chain >- parser(value)
+    }
+    
+    return chain
 }
 
 func parseWhile(predicate: MP4ParseState -> Bool, parse: () -> MP4Parse) -> MP4Parse {

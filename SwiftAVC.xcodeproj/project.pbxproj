@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		E81CD6301B225BD9008002A9 /* MovieHeaderBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CD62F1B225BD9008002A9 /* MovieHeaderBox.swift */; };
+		E81CD6321B234559008002A9 /* TrackReferenceBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CD6311B234559008002A9 /* TrackReferenceBox.swift */; };
+		E81CD6361B234811008002A9 /* TrackGroupBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CD6351B234811008002A9 /* TrackGroupBox.swift */; };
+		E81CD6381B234958008002A9 /* MediaBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CD6371B234958008002A9 /* MediaBox.swift */; };
+		E81CD63A1B234987008002A9 /* MediaHeaderBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CD6391B234987008002A9 /* MediaHeaderBox.swift */; };
+		E81CD63C1B234AAF008002A9 /* HandlerReferenceBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CD63B1B234AAF008002A9 /* HandlerReferenceBox.swift */; };
+		E81CD63E1B23795E008002A9 /* MovieBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CD63D1B23795E008002A9 /* MovieBox.swift */; };
+		E81CD6401B2379E9008002A9 /* TrackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CD63F1B2379E9008002A9 /* TrackBox.swift */; };
+		E81CD6421B237B9F008002A9 /* MediaInformationBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CD6411B237B9F008002A9 /* MediaInformationBox.swift */; };
+		E82944F01B237C8B004B5E2B /* VideoMediaHeaderBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82944EF1B237C8B004B5E2B /* VideoMediaHeaderBox.swift */; };
+		E82944F21B237DA4004B5E2B /* SoundMediaHeaderBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82944F11B237DA4004B5E2B /* SoundMediaHeaderBox.swift */; };
 		E86E606F1B22379200974F38 /* SwiftMP4.h in Headers */ = {isa = PBXBuildFile; fileRef = E86E606E1B22379200974F38 /* SwiftMP4.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E86E60871B2237F400974F38 /* MP4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60831B2237F400974F38 /* MP4.swift */; };
 		E86E60881B2237F400974F38 /* MP4Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E60841B2237F400974F38 /* MP4Box.swift */; };
@@ -25,6 +35,14 @@
 		E86E61061B2254AF00974F38 /* FileTypeBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E61051B2254AF00974F38 /* FileTypeBox.swift */; };
 		E86E61081B2256AD00974F38 /* FullBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E61071B2256AD00974F38 /* FullBox.swift */; };
 		E86E610A1B22584E00974F38 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E61091B22584E00974F38 /* Box.swift */; };
+		E8FC4DE21B237FEF00C8AAA4 /* HintMediaHeaderBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DE11B237FEF00C8AAA4 /* HintMediaHeaderBox.swift */; };
+		E8FC4DE41B2380C500C8AAA4 /* NullMediaHeaderBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DE31B2380C500C8AAA4 /* NullMediaHeaderBox.swift */; };
+		E8FC4DE61B2383A100C8AAA4 /* MediaDataBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DE51B2383A100C8AAA4 /* MediaDataBox.swift */; };
+		E8FC4DE81B23938100C8AAA4 /* EditBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DE71B23938100C8AAA4 /* EditBox.swift */; };
+		E8FC4DEA1B2393B200C8AAA4 /* EditListBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DE91B2393B200C8AAA4 /* EditListBox.swift */; };
+		E8FC4DEC1B239EB100C8AAA4 /* SampleTableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DEB1B239EB100C8AAA4 /* SampleTableBox.swift */; };
+		E8FC4DEE1B23A8FE00C8AAA4 /* SampleSizeBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DED1B23A8FE00C8AAA4 /* SampleSizeBox.swift */; };
+		E8FC4DF01B23AAD700C8AAA4 /* ChunkOffsetBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DEF1B23AAD700C8AAA4 /* ChunkOffsetBox.swift */; };
 		E8FC4DF21B24C8A900C8AAA4 /* SynelDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DF11B24C8A900C8AAA4 /* SynelDictionary.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +78,14 @@
 		E81CBD441B053DC900EFD26B /* H264Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H264Context.swift; sourceTree = "<group>"; };
 		E81CBD461B05400C00EFD26B /* ByteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteStream.swift; sourceTree = "<group>"; };
 		E81CD62F1B225BD9008002A9 /* MovieHeaderBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieHeaderBox.swift; sourceTree = "<group>"; };
+		E81CD6311B234559008002A9 /* TrackReferenceBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackReferenceBox.swift; sourceTree = "<group>"; };
+		E81CD6351B234811008002A9 /* TrackGroupBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackGroupBox.swift; sourceTree = "<group>"; };
+		E81CD6371B234958008002A9 /* MediaBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaBox.swift; sourceTree = "<group>"; };
+		E81CD6391B234987008002A9 /* MediaHeaderBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaHeaderBox.swift; sourceTree = "<group>"; };
+		E81CD63B1B234AAF008002A9 /* HandlerReferenceBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlerReferenceBox.swift; sourceTree = "<group>"; };
+		E81CD63D1B23795E008002A9 /* MovieBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieBox.swift; sourceTree = "<group>"; };
+		E81CD63F1B2379E9008002A9 /* TrackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackBox.swift; sourceTree = "<group>"; };
+		E81CD6411B237B9F008002A9 /* MediaInformationBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaInformationBox.swift; sourceTree = "<group>"; };
 		E81E0FD41B10C1DB000079CA /* SPS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPS.swift; sourceTree = "<group>"; };
 		E81E0FD61B10C271000079CA /* H264Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H264Parse.swift; sourceTree = "<group>"; };
 		E81E0FD81B10C3FD000079CA /* BitParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitParse.swift; sourceTree = "<group>"; };
@@ -68,6 +94,8 @@
 		E81E0FDB1B10C3FD000079CA /* SynelDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynelDictionary.swift; sourceTree = "<group>"; };
 		E81E0FDC1B10C3FD000079CA /* SyntaxElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxElement.swift; sourceTree = "<group>"; };
 		E81E0FDD1B10C3FD000079CA /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E82944EF1B237C8B004B5E2B /* VideoMediaHeaderBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoMediaHeaderBox.swift; sourceTree = "<group>"; };
+		E82944F11B237DA4004B5E2B /* SoundMediaHeaderBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundMediaHeaderBox.swift; sourceTree = "<group>"; };
 		E861558C1B11F76E006F56D1 /* RBSP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBSP.swift; sourceTree = "<group>"; };
 		E861558E1B11FA4A006F56D1 /* ScalingList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalingList.swift; sourceTree = "<group>"; };
 		E86E606A1B22379200974F38 /* SwiftMP4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftMP4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +118,14 @@
 		E86E61051B2254AF00974F38 /* FileTypeBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTypeBox.swift; sourceTree = "<group>"; };
 		E86E61071B2256AD00974F38 /* FullBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullBox.swift; sourceTree = "<group>"; };
 		E86E61091B22584E00974F38 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		E8FC4DE11B237FEF00C8AAA4 /* HintMediaHeaderBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HintMediaHeaderBox.swift; sourceTree = "<group>"; };
+		E8FC4DE31B2380C500C8AAA4 /* NullMediaHeaderBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullMediaHeaderBox.swift; sourceTree = "<group>"; };
+		E8FC4DE51B2383A100C8AAA4 /* MediaDataBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaDataBox.swift; sourceTree = "<group>"; };
+		E8FC4DE71B23938100C8AAA4 /* EditBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBox.swift; sourceTree = "<group>"; };
+		E8FC4DE91B2393B200C8AAA4 /* EditListBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListBox.swift; sourceTree = "<group>"; };
+		E8FC4DEB1B239EB100C8AAA4 /* SampleTableBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTableBox.swift; sourceTree = "<group>"; };
+		E8FC4DED1B23A8FE00C8AAA4 /* SampleSizeBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleSizeBox.swift; sourceTree = "<group>"; };
+		E8FC4DEF1B23AAD700C8AAA4 /* ChunkOffsetBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkOffsetBox.swift; sourceTree = "<group>"; };
 		E8FC4DF11B24C8A900C8AAA4 /* SynelDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynelDictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,10 +288,28 @@
 			isa = PBXGroup;
 			children = (
 				E86E61091B22584E00974F38 /* Box.swift */,
+				E8FC4DEF1B23AAD700C8AAA4 /* ChunkOffsetBox.swift */,
+				E8FC4DE71B23938100C8AAA4 /* EditBox.swift */,
+				E8FC4DE91B2393B200C8AAA4 /* EditListBox.swift */,
 				E86E61051B2254AF00974F38 /* FileTypeBox.swift */,
 				E86E61071B2256AD00974F38 /* FullBox.swift */,
+				E81CD63B1B234AAF008002A9 /* HandlerReferenceBox.swift */,
+				E8FC4DE11B237FEF00C8AAA4 /* HintMediaHeaderBox.swift */,
+				E81CD6371B234958008002A9 /* MediaBox.swift */,
+				E8FC4DE51B2383A100C8AAA4 /* MediaDataBox.swift */,
+				E81CD6391B234987008002A9 /* MediaHeaderBox.swift */,
+				E81CD6411B237B9F008002A9 /* MediaInformationBox.swift */,
+				E81CD63D1B23795E008002A9 /* MovieBox.swift */,
 				E81CD62F1B225BD9008002A9 /* MovieHeaderBox.swift */,
+				E8FC4DE31B2380C500C8AAA4 /* NullMediaHeaderBox.swift */,
+				E8FC4DED1B23A8FE00C8AAA4 /* SampleSizeBox.swift */,
+				E8FC4DEB1B239EB100C8AAA4 /* SampleTableBox.swift */,
+				E82944F11B237DA4004B5E2B /* SoundMediaHeaderBox.swift */,
+				E81CD63F1B2379E9008002A9 /* TrackBox.swift */,
 				E86E61031B2253C200974F38 /* TrackHeaderBox.swift */,
+				E81CD6351B234811008002A9 /* TrackGroupBox.swift */,
+				E81CD6311B234559008002A9 /* TrackReferenceBox.swift */,
+				E82944EF1B237C8B004B5E2B /* VideoMediaHeaderBox.swift */,
 			);
 			path = Boxes;
 			sourceTree = "<group>";
@@ -408,17 +462,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8FC4DEA1B2393B200C8AAA4 /* EditListBox.swift in Sources */,
 				E8FC4DF21B24C8A900C8AAA4 /* SynelDictionary.swift in Sources */,
+				E81CD6321B234559008002A9 /* TrackReferenceBox.swift in Sources */,
+				E81CD6381B234958008002A9 /* MediaBox.swift in Sources */,
+				E81CD63E1B23795E008002A9 /* MovieBox.swift in Sources */,
 				E86E610A1B22584E00974F38 /* Box.swift in Sources */,
 				E81CD6301B225BD9008002A9 /* MovieHeaderBox.swift in Sources */,
 				E86E61061B2254AF00974F38 /* FileTypeBox.swift in Sources */,
+				E8FC4DE61B2383A100C8AAA4 /* MediaDataBox.swift in Sources */,
 				E86E60871B2237F400974F38 /* MP4.swift in Sources */,
+				E81CD6361B234811008002A9 /* TrackGroupBox.swift in Sources */,
 				E86E60CA1B223C4800974F38 /* Monad.swift in Sources */,
+				E81CD6421B237B9F008002A9 /* MediaInformationBox.swift in Sources */,
+				E8FC4DEC1B239EB100C8AAA4 /* SampleTableBox.swift in Sources */,
 				E86E608A1B2237F400974F38 /* Synel.swift in Sources */,
 				E86E61081B2256AD00974F38 /* FullBox.swift in Sources */,
+				E82944F01B237C8B004B5E2B /* VideoMediaHeaderBox.swift in Sources */,
+				E81CD6401B2379E9008002A9 /* TrackBox.swift in Sources */,
+				E8FC4DE81B23938100C8AAA4 /* EditBox.swift in Sources */,
 				E86E60891B2237F400974F38 /* MP4Parse.swift in Sources */,
+				E81CD63A1B234987008002A9 /* MediaHeaderBox.swift in Sources */,
 				E86E61041B2253C200974F38 /* TrackHeaderBox.swift in Sources */,
 				E86E60881B2237F400974F38 /* MP4Box.swift in Sources */,
+				E8FC4DE41B2380C500C8AAA4 /* NullMediaHeaderBox.swift in Sources */,
+				E8FC4DEE1B23A8FE00C8AAA4 /* SampleSizeBox.swift in Sources */,
+				E8FC4DF01B23AAD700C8AAA4 /* ChunkOffsetBox.swift in Sources */,
+				E8FC4DE21B237FEF00C8AAA4 /* HintMediaHeaderBox.swift in Sources */,
+				E81CD63C1B234AAF008002A9 /* HandlerReferenceBox.swift in Sources */,
+				E82944F21B237DA4004B5E2B /* SoundMediaHeaderBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
