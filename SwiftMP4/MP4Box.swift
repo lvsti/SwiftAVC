@@ -48,10 +48,6 @@ extension FourCharCode: StringLiteralConvertible {
     }
 }
 
-extension FourCharCode: Printable {
-    public var description: String { get { return self.toString() } }
-}
-
 
 protocol MP4Box {
     class var fourCC: FourCharCode { get }
@@ -68,8 +64,11 @@ public struct BoxDescriptor {
     public var type: FourCharCode { get {
         return properties[Box.type]![0].toU32s![0]
     } }
-    public var size: Int { get {
-        return frameRange.length
+}
+
+extension BoxDescriptor: Printable {
+    public var description: String { get {
+        return "\(type.toString()): \(properties)"
     } }
 }
 
