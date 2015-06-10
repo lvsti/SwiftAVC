@@ -25,6 +25,7 @@
 		E86E61061B2254AF00974F38 /* FileTypeBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E61051B2254AF00974F38 /* FileTypeBox.swift */; };
 		E86E61081B2256AD00974F38 /* FullBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E61071B2256AD00974F38 /* FullBox.swift */; };
 		E86E610A1B22584E00974F38 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E61091B22584E00974F38 /* Box.swift */; };
+		E8FC4DF21B24C8A900C8AAA4 /* SynelDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DF11B24C8A900C8AAA4 /* SynelDictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		E86E61051B2254AF00974F38 /* FileTypeBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTypeBox.swift; sourceTree = "<group>"; };
 		E86E61071B2256AD00974F38 /* FullBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullBox.swift; sourceTree = "<group>"; };
 		E86E61091B22584E00974F38 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		E8FC4DF11B24C8A900C8AAA4 /* SynelDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynelDictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 				E86E60841B2237F400974F38 /* MP4Box.swift */,
 				E86E60851B2237F400974F38 /* MP4Parse.swift */,
 				E86E60861B2237F400974F38 /* Synel.swift */,
+				E8FC4DF11B24C8A900C8AAA4 /* SynelDictionary.swift */,
 				E86E606E1B22379200974F38 /* SwiftMP4.h */,
 				E86E606C1B22379200974F38 /* Supporting Files */,
 			);
@@ -405,6 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8FC4DF21B24C8A900C8AAA4 /* SynelDictionary.swift in Sources */,
 				E86E610A1B22584E00974F38 /* Box.swift in Sources */,
 				E81CD6301B225BD9008002A9 /* MovieHeaderBox.swift in Sources */,
 				E86E61061B2254AF00974F38 /* FileTypeBox.swift in Sources */,

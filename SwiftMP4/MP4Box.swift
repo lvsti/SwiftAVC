@@ -60,13 +60,13 @@ protocol MP4Box {
 }
 
 public struct BoxDescriptor {
-    public let properties: [Synel:SynelValue]
+    public let properties: SynelDictionary
     public let frameRange: NSRange
     public let payloadRange: NSRange
     public let children: [BoxDescriptor]
     
     public var type: FourCharCode { get {
-        return properties[Box.type]!.toU32s![0]
+        return properties[Box.type]![0].toU32s![0]
     } }
     public var size: Int { get {
         return frameRange.length

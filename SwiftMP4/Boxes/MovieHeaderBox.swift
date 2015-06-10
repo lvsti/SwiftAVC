@@ -34,13 +34,13 @@ extension MovieHeaderBox: MP4Box {
     
     func boxParse() -> MP4Parse {
         return
-            parseIf({ mps in mps.dictionary[FullBox.version]!.toU8s![0] == 1 }) {
+            parseIf({ mps in mps.dictionary[FullBox.version]![0].toU8s![0] == 1 }) {
                 parse(MovieHeaderBox.creationTime64) >-
                 parse(MovieHeaderBox.modificationTime64) >-
                 parse(MovieHeaderBox.timescale) >-
                 parse(MovieHeaderBox.duration64)
             } >-
-            parseIf({ mps in mps.dictionary[FullBox.version]!.toU8s![0] == 0 }) {
+            parseIf({ mps in mps.dictionary[FullBox.version]![0].toU8s![0] == 0 }) {
                 parse(MovieHeaderBox.creationTime) >-
                 parse(MovieHeaderBox.modificationTime) >-
                 parse(MovieHeaderBox.timescale) >-

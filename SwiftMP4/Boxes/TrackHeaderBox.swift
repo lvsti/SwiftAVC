@@ -38,14 +38,14 @@ extension TrackHeaderBox: MP4Box {
     
     func boxParse() -> MP4Parse {
         return
-            parseIf({ mps in mps.dictionary[FullBox.version]!.toU8s![0] == 1 }) {
+            parseIf({ mps in mps.dictionary[FullBox.version]![0].toU8s![0] == 1 }) {
                 parse(TrackHeaderBox.creationTime64) >-
                 parse(TrackHeaderBox.modificationTime64) >-
                 parse(TrackHeaderBox.trackID) >-
                 parse(TrackHeaderBox.reserved1) >-
                 parse(TrackHeaderBox.duration64)
             } >-
-            parseIf({ mps in mps.dictionary[FullBox.version]!.toU8s![0] == 0 }) {
+            parseIf({ mps in mps.dictionary[FullBox.version]![0].toU8s![0] == 0 }) {
                 parse(TrackHeaderBox.creationTime) >-
                 parse(TrackHeaderBox.modificationTime) >-
                 parse(TrackHeaderBox.trackID) >-

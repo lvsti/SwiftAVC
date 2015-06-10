@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias SynelDictionary = [Synel:SynelValue]
-
 struct MP4ParseState {
     let data: NSData
     let offset: Int
@@ -40,17 +38,15 @@ struct MP4ParseState {
                              offset: NSMaxRange(box.frameRange),
                              endOffset: self.endOffset,
                              boxes: newBoxes,
-                             dictionary: [:])
+                             dictionary: SynelDictionary())
     }
     
-    func settingValue(value: SynelValue, forKey key: Synel) -> MP4ParseState {
-        var newDictionary = self.dictionary
-        newDictionary.updateValue(value, forKey: key)
+    func addingValue(value: SynelValue, forKey key: Synel) -> MP4ParseState {
         return MP4ParseState(data: self.data,
                              offset: self.offset,
                              endOffset: self.endOffset,
                              boxes: self.boxes,
-                             dictionary: newDictionary)
+                             dictionary: self.dictionary.addScalar(value, forKey: key))
     }
     
     func withEndOffset(endOffset: Int) -> MP4ParseState {
@@ -153,28 +149,42 @@ func parse(synel: Synel) -> MP4Parse {
                 case .u8:
                     var items: [UInt8] = parseListOfBigEndianItems(ptr, 0, parseCondition)
                     itemCount = items.count
+                    if items[itemCount - 1] != 0 {
+                        return MP4Parse.fail("unexpected EOS while parsing \(synel.name)")
+                    }
                     value = SynelValue.UInt8(items)
                     break
                 case .u16:
                     var items: [UInt16] = parseListOfBigEndianItems(ptr, 0, parseCondition)
                     itemCount = items.count
+                    if items[itemCount - 1] != 0 {
+                        return MP4Parse.fail("unexpected EOS while parsing \(synel.name)")
+                    }
                     value = SynelValue.UInt16(items)
                     break
                 case .u32:
                     var items: [UInt32] = parseListOfBigEndianItems(ptr, 0, parseCondition)
                     itemCount = items.count
+                    if items[itemCount - 1] != 0 {
+                        return MP4Parse.fail("unexpected EOS while parsing \(synel.name)")
+                    }
                     value = SynelValue.UInt32(items)
                     break
                 case .u64:
                     var items: [UInt64] = parseListOfBigEndianItems(ptr, 0, parseCondition)
                     itemCount = items.count
+                    if items[itemCount - 1] != 0 {
+                        return MP4Parse.fail("unexpected EOS while parsing \(synel.name)")
+                    }
                     value = SynelValue.UInt64(items)
                     break
                 }
+                
             }
             
-            let newMPS = mps.settingValue(value, forKey: synel).advancedBy(itemSize * itemCount)
+            let newMPS = mps.addingValue(value, forKey: synel).advancedBy(itemSize * itemCount)
     
             return MP4Parse.put(newMPS)
         }
 }
+

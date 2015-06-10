@@ -18,10 +18,10 @@ struct Box {
         return
             parse(Box.size) >-
             parse(Box.type) >-
-            parseIf({ mps in mps.dictionary[Box.size]!.toU32s![0] == 1 }) {
+            parseIf({ mps in mps.dictionary[Box.size]![0].toU32s![0] == 1 }) {
                 parse(Box.largeSize)
             } >-
-            parseIf({ mps in mps.dictionary[Box.type]!.toU32s![0] == "uuid" }) {
+            parseIf({ mps in mps.dictionary[Box.type]![0].toU32s![0] == "uuid" }) {
                 parse(Box.userType)
             }
     }
