@@ -169,3 +169,64 @@ public func parseMP4Data(data: NSData) -> Either<MP4ParseError, [BoxDescriptor]>
     case .Right(_): return .Right(Wrap(state.boxes))
     }
 }
+
+public func getVideoTrackBoxes(boxes: [BoxDescriptor]) -> [BoxDescriptor] {
+    return boxes
+        .filter { $0.type == MovieBox.fourCC }
+        .map { $0.children }
+        .reduce([], +)
+        .filter { $0.type == TrackBox.fourCC }
+        .filter { trackBox in
+            let mediaBox = trackBox.children.filter { $0.type == MediaBox.fourCC } [0]
+            let handlerBox = mediaBox.children.filter { $0.type == HandlerReferenceBox.fourCC } [0]
+            return handlerBox.properties[HandlerReferenceBox.handlerType]![0].toU32s![0] ==
+                HandlerReferenceBox.HandlerType.Video.rawValue
+        }
+}
+
+func zip<A, B>(s0: [A], s1: [B]) -> [(A, B)] {
+    var zipped = [(A,B)]()
+    for i in 0..<min(s0.count, s1.count) {
+        zipped.append((s0[i], s1[i]))
+    }
+    return zipped
+}
+
+public func getTrackSampleDataRanges(trackBox: BoxDescriptor) -> [NSRange] {
+    let sampleTableBox = trackBox.children
+        .filter { $0.type == MediaBox.fourCC } [0].children
+        .filter { $0.type == MediaInformationBox.fourCC } [0].children
+        .filter { $0.type == SampleTableBox.fourCC } [0]
+    
+    let sampleSizes: [Int] = sampleTableBox.children
+        .filter { $0.type == SampleSizeBox.fourCC }
+        .map { ssb in
+            let size = Int(ssb.properties[SampleSizeBox.sampleSize]![0].toU32s![0])
+            if size == 0 {
+                return ssb.properties[SampleSizeBox.entrySize]!
+                    .map { Int($0.toU32s![0]) }
+            }
+            
+            let count: Int = Int(ssb.properties[SampleSizeBox.sampleCount]![0].toU32s![0])
+            return [Int](count: count, repeatedValue: size)
+        }
+        .reduce([], +)
+
+    let chunkOffsets: [Int] = sampleTableBox.children
+        .filter { $0.type == ChunkOffsetBox.fourCC }
+        .map { cob in
+            let count = Int(cob.properties[ChunkOffsetBox.entryCount]![0].toU32s![0])
+            return cob.properties[ChunkOffsetBox.chunkOffset]!
+                .map { Int($0.toU32s![0]) }
+        }
+        .reduce([], +)
+
+    assert(sampleSizes.count == chunkOffsets.count,
+        "sample size - chunk offset count mismatch: \(sampleSizes.count) <> \(chunkOffsets.count)")
+    
+    return zip(chunkOffsets, sampleSizes)
+        .map { NSMakeRange($0, $1) }
+}
+
+
+
