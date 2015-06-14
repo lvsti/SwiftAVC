@@ -110,7 +110,7 @@ private func parseTrailingZeroes() -> ByteStreamParse {
         }
 }
 
-func parseNextNALUnitBytes() -> ByteStreamParse {
+private func parseNextNALUnitBytes() -> ByteStreamParse {
     return
         parseLeadingZeroes() >-
         parseStartCodePrefixOne3bytes() >-
@@ -125,7 +125,7 @@ func parseNextNALUnitBytes() -> ByteStreamParse {
         parseTrailingZeroes()
 }
 
-func nalUnitRangesFromByteStream(data: NSData) -> [NSRange] {
+public func getNALUnitRangesFromByteStream(data: NSData) -> [NSRange] {
     var bsps = ByteStreamParseState(data: data, offset: 0, nalDataRange: nil)
     var nalUnitRanges: [NSRange] = []
     
@@ -150,4 +150,36 @@ func nalUnitRangesFromByteStream(data: NSData) -> [NSRange] {
     
     return nalUnitRanges
 }
+
+// spec 7.3.1
+public func unescapeByteStreamNALUnitBytes(escapedBytes: NSData) -> NSData {
+    let kEmulationPreventionSequence: [Byte] = [0, 0, 3];
+    let epsData = NSData(bytes: UnsafePointer<Byte>(kEmulationPreventionSequence),
+        length: kEmulationPreventionSequence.count)
+    
+    var epsRange = escapedBytes.rangeOfData(epsData,
+        options: NSDataSearchOptions(),
+        range: NSMakeRange(0, escapedBytes.length))
+    if epsRange.location == NSNotFound {
+        return escapedBytes
+    }
+    
+    var offset = 0
+    let unescapedBytes = NSMutableData(capacity: escapedBytes.length)!
+    
+    while epsRange.location != NSNotFound {
+        unescapedBytes.appendBytes(UnsafePointer<Byte>(escapedBytes.bytes).advancedBy(offset),
+            length: epsRange.location + 2)
+        offset += epsRange.location + 3
+        epsRange = escapedBytes.rangeOfData(epsData,
+            options: NSDataSearchOptions(),
+            range: NSMakeRange(offset, escapedBytes.length - offset))
+    }
+    
+    unescapedBytes.appendBytes(UnsafePointer<Byte>(escapedBytes.bytes).advancedBy(offset),
+        length: escapedBytes.length - offset)
+    
+    return unescapedBytes
+}
+
 

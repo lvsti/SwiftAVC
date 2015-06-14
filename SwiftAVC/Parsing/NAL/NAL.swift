@@ -178,8 +178,8 @@ func parseNALUnitBytes(bytes: NSData) -> Either<String, NALUnit> {
             let nalType = sd.scalar(forKey: NALUnitSynel.nalUnitType)
             let refIDC = sd.scalar(forKey: NALUnitSynel.nalRefIDC)
             
-            let escapedRBSPRange = NSMakeRange(byteOffset, bps.bitstream.length/8 - byteOffset)
-            let rbspBytes = unescapeRBSP(bps.bitstream.data.subdataWithRange(escapedRBSPRange))
+            let rbspRange = NSMakeRange(byteOffset, bps.bitstream.length/8 - byteOffset)
+            let rbspBytes = bps.bitstream.data.subdataWithRange(rbspRange)
 
             let hasExtHeader = sd.hasKey(NALUnitSynel.svcExtensionFlag)
             var svcHeader: SVCHeader?
@@ -205,30 +205,3 @@ func parseNALUnitBytes(bytes: NSData) -> Either<String, NALUnit> {
     return nalParse.runH264Parse(hps).0
 }
 
-// spec 7.3.1
-func unescapeRBSP(escapedBytes: NSData) -> NSData {
-    let kEmulationPreventionSequence: [Byte] = [0, 0, 3];
-    let epsData = NSData(bytes: UnsafePointer<Byte>(kEmulationPreventionSequence),
-                         length: kEmulationPreventionSequence.count)
-    
-    var epsRange = escapedBytes.rangeOfData(epsData,
-                                            options: NSDataSearchOptions(),
-                                            range: NSMakeRange(0, escapedBytes.length))
-    if epsRange.location == NSNotFound {
-        return escapedBytes
-    }
-    
-    var offset = 0
-    let unescapedBytes = NSMutableData(capacity: escapedBytes.length)!
-    
-    while epsRange.location != NSNotFound {
-        unescapedBytes.appendBytes(UnsafePointer<Byte>(escapedBytes.bytes).advancedBy(offset),
-                                   length: epsRange.location + 2)
-        offset += epsRange.location + 3
-        epsRange = escapedBytes.rangeOfData(epsData,
-                                            options: NSDataSearchOptions(),
-                                            range: NSMakeRange(offset, escapedBytes.length - offset))
-    }
-    
-    return unescapedBytes
-}
