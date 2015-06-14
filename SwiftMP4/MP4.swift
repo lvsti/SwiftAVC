@@ -42,6 +42,8 @@ let boxRegistry: [FourCharCode : MP4Box] = [
     SampleSizeBox.fourCC: SampleSizeBox(),
     ChunkOffsetBox.fourCC: ChunkOffsetBox(),
     SampleDescriptionBox.fourCC: SampleDescriptionBox(),
+    AVCSampleEntry.fourCC: AVCSampleEntry(),
+    AVCConfigurationBox.fourCC: AVCConfigurationBox()
 ]
 
 
@@ -171,7 +173,7 @@ public func parseMP4Data(data: NSData) -> Either<MP4ParseError, [BoxDescriptor]>
     }
 }
 
-public func getVideoTrackBoxes(boxes: [BoxDescriptor]) -> [BoxDescriptor] {
+public func getAVCVideoTrackBoxes(boxes: [BoxDescriptor]) -> [BoxDescriptor] {
     return boxes
         .filter { $0.type == MovieBox.fourCC }
         .map { $0.children }
@@ -180,8 +182,19 @@ public func getVideoTrackBoxes(boxes: [BoxDescriptor]) -> [BoxDescriptor] {
         .filter { trackBox in
             let mediaBox = trackBox.children.filter { $0.type == MediaBox.fourCC } [0]
             let handlerBox = mediaBox.children.filter { $0.type == HandlerReferenceBox.fourCC } [0]
-            return handlerBox.properties[HandlerReferenceBox.handlerType]![0].toU32s![0] ==
-                HandlerReferenceBox.HandlerType.Video.rawValue
+            let isVideo = handlerBox.properties[HandlerReferenceBox.handlerType]![0].toU32s![0] ==
+                            HandlerReferenceBox.HandlerType.Video.rawValue
+            if !isVideo {
+                return false
+            }
+            
+            let sampleDescBox = mediaBox.children
+                .filter { $0.type == MediaInformationBox.fourCC } [0].children
+                .filter { $0.type == SampleTableBox.fourCC } [0].children
+                .filter { $0.type == SampleDescriptionBox.fourCC } [0]
+            
+            let isAVC = contains(sampleDescBox.children) { $0.type == AVCSampleEntry.fourCC }
+            return isAVC
         }
 }
 
@@ -191,6 +204,65 @@ func zip<A, B>(s0: [A], s1: [B]) -> [(A, B)] {
         zipped.append((s0[i], s1[i]))
     }
     return zipped
+}
+
+public func getAVCNALLengthSize(trackBox: BoxDescriptor) -> Int {
+    let sampleTableBox = trackBox.children
+        .filter { $0.type == MediaBox.fourCC } [0].children
+        .filter { $0.type == MediaInformationBox.fourCC } [0].children
+        .filter { $0.type == SampleTableBox.fourCC } [0]
+    
+    let avcConfigBox = sampleTableBox.children
+        .filter { $0.type == SampleDescriptionBox.fourCC } [0].children
+        .filter { $0.type == AVCSampleEntry.fourCC } [0].children
+        .filter { $0.type == AVCConfigurationBox.fourCC } [0]
+    
+    let lsmo = avcConfigBox.properties[AVCDecoderConfigurationRecord.lengthSizeMinusOne]![0].toU8s![0]
+    return AVCDecoderConfigurationRecord.nalLengthSize(lsmo)
+}
+
+func octetFrame(size: Int, payloadLength: Int) -> [UInt8] {
+    var frameBytes = [UInt8]()
+    for i in 0..<size {
+        let byte = UInt8((payloadLength >> (8 * (size - i - 1))) & 0xff)
+        frameBytes.append(byte)
+    }
+    return frameBytes
+}
+
+public func getAVCParameterSets(trackBox: BoxDescriptor) -> [NSData] {
+    let sampleTableBox = trackBox.children
+        .filter { $0.type == MediaBox.fourCC } [0].children
+        .filter { $0.type == MediaInformationBox.fourCC } [0].children
+        .filter { $0.type == SampleTableBox.fourCC } [0]
+
+    let avcConfigBox = sampleTableBox.children
+        .filter { $0.type == SampleDescriptionBox.fourCC } [0].children
+        .filter { $0.type == AVCSampleEntry.fourCC } [0].children
+        .filter { $0.type == AVCConfigurationBox.fourCC } [0]
+    
+    let lsmo = avcConfigBox.properties[AVCDecoderConfigurationRecord.lengthSizeMinusOne]![0].toU8s![0]
+    let nalLengthSize = AVCDecoderConfigurationRecord.nalLengthSize(lsmo)
+    
+    var parameterSets = [NSData]()
+    
+    let spsNALUnits = avcConfigBox.properties[AVCDecoderConfigurationRecord.sequenceParameterSetNALUnit]!
+    for i in 0..<spsNALUnits.count {
+        let spsOctets = spsNALUnits[i].toU8s!
+        let framedSPSOctets = octetFrame(nalLengthSize, spsOctets.count) + spsOctets
+        let spsData = NSData(bytes: framedSPSOctets, length: framedSPSOctets.count)
+        parameterSets.append(spsData)
+    }
+
+    let ppsNALUnits = avcConfigBox.properties[AVCDecoderConfigurationRecord.pictureParameterSetNALUnit]!
+    for i in 0..<ppsNALUnits.count {
+        let ppsOctets = ppsNALUnits[i].toU8s!
+        let framedPPSOctets = octetFrame(nalLengthSize, ppsOctets.count) + ppsOctets
+        let ppsData = NSData(bytes: framedPPSOctets, length: framedPPSOctets.count)
+        parameterSets.append(ppsData)
+    }
+    
+    return parameterSets
 }
 
 public func getTrackSampleDataRanges(trackBox: BoxDescriptor) -> [NSRange] {
