@@ -40,7 +40,8 @@ let boxRegistry: [FourCharCode : MP4Box] = [
     EditListBox.fourCC: EditListBox(),
     SampleTableBox.fourCC: SampleTableBox(),
     SampleSizeBox.fourCC: SampleSizeBox(),
-    ChunkOffsetBox.fourCC: ChunkOffsetBox()
+    ChunkOffsetBox.fourCC: ChunkOffsetBox(),
+    SampleDescriptionBox.fourCC: SampleDescriptionBox(),
 ]
 
 
