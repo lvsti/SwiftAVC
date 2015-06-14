@@ -75,11 +75,11 @@
 /* Begin PBXFileReference section */
 		E80E639B1B16586800AF960C /* VUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VUI.swift; sourceTree = "<group>"; };
 		E80E639D1B1664A900AF960C /* HRD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HRD.swift; sourceTree = "<group>"; };
+		E81CA22B1B2D771C00EBC509 /* ByteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteStream.swift; sourceTree = "<group>"; };
 		E81CBD401B053C8000EFD26B /* NAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAL.swift; sourceTree = "<group>"; };
 		E81CBD411B053C8000EFD26B /* SVCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVCExtensions.swift; sourceTree = "<group>"; };
 		E81CBD421B053C9200EFD26B /* MVCExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MVCExtensions.swift; sourceTree = "<group>"; };
 		E81CBD441B053DC900EFD26B /* H264Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H264Context.swift; sourceTree = "<group>"; };
-		E81CBD461B05400C00EFD26B /* ByteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteStream.swift; sourceTree = "<group>"; };
 		E81CD62F1B225BD9008002A9 /* MovieHeaderBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieHeaderBox.swift; sourceTree = "<group>"; };
 		E81CD6311B234559008002A9 /* TrackReferenceBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackReferenceBox.swift; sourceTree = "<group>"; };
 		E81CD6351B234811008002A9 /* TrackGroupBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackGroupBox.swift; sourceTree = "<group>"; };
@@ -193,9 +193,18 @@
 			path = SwiftAVC;
 			sourceTree = "<group>";
 		};
+		E81CA22A1B2D771C00EBC509 /* Transport */ = {
+			isa = PBXGroup;
+			children = (
+				E81CA22B1B2D771C00EBC509 /* ByteStream.swift */,
+			);
+			path = Transport;
+			sourceTree = "<group>";
+		};
 		E81CBD3E1B053BCB00EFD26B /* Parsing */ = {
 			isa = PBXGroup;
 			children = (
+				E81CA22A1B2D771C00EBC509 /* Transport */,
 				E81CBD3F1B053C8000EFD26B /* NAL */,
 				E81E0FD31B10C1CE000079CA /* RBSP */,
 				E81E0FD81B10C3FD000079CA /* BitParse.swift */,
@@ -211,7 +220,6 @@
 		E81CBD3F1B053C8000EFD26B /* NAL */ = {
 			isa = PBXGroup;
 			children = (
-				E81CBD461B05400C00EFD26B /* ByteStream.swift */,
 				E81CBD421B053C9200EFD26B /* MVCExtensions.swift */,
 				E81CBD401B053C8000EFD26B /* NAL.swift */,
 				E81CBD411B053C8000EFD26B /* SVCExtensions.swift */,

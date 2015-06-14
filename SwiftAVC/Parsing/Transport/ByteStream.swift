@@ -36,11 +36,11 @@ extension EitherState {
 typealias ByteStreamParseError = String
 typealias ByteStreamParse = EitherState<ByteStreamParseError, ByteStreamParseState, ()>
 
-func bsLambda(f: ByteStreamParseState -> ByteStreamParse) -> (ByteStreamParseState -> ByteStreamParse) {
+private func bsLambda(f: ByteStreamParseState -> ByteStreamParse) -> (ByteStreamParseState -> ByteStreamParse) {
     return f
 }
 
-func parseStartCodePrefixOne3bytes() -> ByteStreamParse {
+private func parseStartCodePrefixOne3bytes() -> ByteStreamParse {
     return ByteStreamParse.get() >>-
         bsLambda { bsps in
             if bsps.offset + 3 > bsps.data.length {
@@ -56,7 +56,7 @@ func parseStartCodePrefixOne3bytes() -> ByteStreamParse {
         }
 }
 
-func parseLeadingZeroes() -> ByteStreamParse {
+private func parseLeadingZeroes() -> ByteStreamParse {
     return ByteStreamParse.get() >>-
         bsLambda { bsps in
             if bsps.offset + 3 > bsps.data.length {
@@ -74,7 +74,7 @@ func parseLeadingZeroes() -> ByteStreamParse {
         }
 }
 
-func findNALTerminationSequenceOffset(bsps: ByteStreamParseState) -> Int? {
+private func findNALTerminationSequenceOffset(bsps: ByteStreamParseState) -> Int? {
     var delta = 0
     var ptr = UnsafePointer<UInt8>(bsps.data.bytes).advancedBy(bsps.offset)
     while bsps.offset + delta <= bsps.data.length &&
@@ -86,7 +86,7 @@ func findNALTerminationSequenceOffset(bsps: ByteStreamParseState) -> Int? {
     return bsps.offset + delta <= bsps.data.length ? delta : nil
 }
 
-func parseTrailingZeroes() -> ByteStreamParse {
+private func parseTrailingZeroes() -> ByteStreamParse {
     return ByteStreamParse.get() >>-
         bsLambda { bsps in
             var delta = 0
@@ -134,7 +134,7 @@ func nalUnitRangesFromByteStream(data: NSData) -> [NSRange] {
         
         switch result {
         case .Left(let box):
-            println("ERROR: \(box.unbox())")
+            println("ERROR: \(box.unwrap())")
             return nalUnitRanges
         case .Right(let box):
             if let range = newBsps.lastNALDataRange {
