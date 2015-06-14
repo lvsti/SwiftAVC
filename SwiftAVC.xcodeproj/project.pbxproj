@@ -46,6 +46,9 @@
 		E8FC4DF21B24C8A900C8AAA4 /* SynelDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DF11B24C8A900C8AAA4 /* SynelDictionary.swift */; };
 		E8FC4DF51B28EFC000C8AAA4 /* SampleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DF41B28EFC000C8AAA4 /* SampleEntry.swift */; };
 		E8FC4DF71B28F07D00C8AAA4 /* VisualSampleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DF61B28F07D00C8AAA4 /* VisualSampleEntry.swift */; };
+		E8FC4DF91B28F2DF00C8AAA4 /* AVCSampleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DF81B28F2DF00C8AAA4 /* AVCSampleEntry.swift */; };
+		E8FC4DFB1B28F37300C8AAA4 /* AVCConfigurationBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DFA1B28F37300C8AAA4 /* AVCConfigurationBox.swift */; };
+		E8FC4DFD1B28F40000C8AAA4 /* AVCDecoderConfigurationRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DFC1B28F40000C8AAA4 /* AVCDecoderConfigurationRecord.swift */; };
 		E8FC4DFF1B2A328B00C8AAA4 /* SampleDescriptionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4DFE1B2A328B00C8AAA4 /* SampleDescriptionBox.swift */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +135,9 @@
 		E8FC4DF11B24C8A900C8AAA4 /* SynelDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynelDictionary.swift; sourceTree = "<group>"; };
 		E8FC4DF41B28EFC000C8AAA4 /* SampleEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleEntry.swift; sourceTree = "<group>"; };
 		E8FC4DF61B28F07D00C8AAA4 /* VisualSampleEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualSampleEntry.swift; sourceTree = "<group>"; };
+		E8FC4DF81B28F2DF00C8AAA4 /* AVCSampleEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCSampleEntry.swift; sourceTree = "<group>"; };
+		E8FC4DFA1B28F37300C8AAA4 /* AVCConfigurationBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCConfigurationBox.swift; sourceTree = "<group>"; };
+		E8FC4DFC1B28F40000C8AAA4 /* AVCDecoderConfigurationRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCDecoderConfigurationRecord.swift; sourceTree = "<group>"; };
 		E8FC4DFE1B2A328B00C8AAA4 /* SampleDescriptionBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleDescriptionBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -301,6 +307,7 @@
 		E86E61021B2253B400974F38 /* Boxes */ = {
 			isa = PBXGroup;
 			children = (
+				E8FC4DF31B28EF2900C8AAA4 /* AVC */,
 				E86E61091B22584E00974F38 /* Box.swift */,
 				E8FC4DEF1B23AAD700C8AAA4 /* ChunkOffsetBox.swift */,
 				E8FC4DE71B23938100C8AAA4 /* EditBox.swift */,
@@ -329,6 +336,16 @@
 				E8FC4DF61B28F07D00C8AAA4 /* VisualSampleEntry.swift */,
 			);
 			path = Boxes;
+			sourceTree = "<group>";
+		};
+		E8FC4DF31B28EF2900C8AAA4 /* AVC */ = {
+			isa = PBXGroup;
+			children = (
+				E8FC4DFA1B28F37300C8AAA4 /* AVCConfigurationBox.swift */,
+				E8FC4DFC1B28F40000C8AAA4 /* AVCDecoderConfigurationRecord.swift */,
+				E8FC4DF81B28F2DF00C8AAA4 /* AVCSampleEntry.swift */,
+			);
+			path = AVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -488,9 +505,11 @@
 				E8FC4DF71B28F07D00C8AAA4 /* VisualSampleEntry.swift in Sources */,
 				E81CD6301B225BD9008002A9 /* MovieHeaderBox.swift in Sources */,
 				E86E61061B2254AF00974F38 /* FileTypeBox.swift in Sources */,
+				E8FC4DFD1B28F40000C8AAA4 /* AVCDecoderConfigurationRecord.swift in Sources */,
 				E8FC4DE61B2383A100C8AAA4 /* MediaDataBox.swift in Sources */,
 				E86E60871B2237F400974F38 /* MP4.swift in Sources */,
 				E81CD6361B234811008002A9 /* TrackGroupBox.swift in Sources */,
+				E8FC4DFB1B28F37300C8AAA4 /* AVCConfigurationBox.swift in Sources */,
 				E86E60CA1B223C4800974F38 /* Monad.swift in Sources */,
 				E81CD6421B237B9F008002A9 /* MediaInformationBox.swift in Sources */,
 				E8FC4DEC1B239EB100C8AAA4 /* SampleTableBox.swift in Sources */,
@@ -509,6 +528,7 @@
 				E8FC4DEE1B23A8FE00C8AAA4 /* SampleSizeBox.swift in Sources */,
 				E8FC4DF01B23AAD700C8AAA4 /* ChunkOffsetBox.swift in Sources */,
 				E8FC4DE21B237FEF00C8AAA4 /* HintMediaHeaderBox.swift in Sources */,
+				E8FC4DF91B28F2DF00C8AAA4 /* AVCSampleEntry.swift in Sources */,
 				E81CD63C1B234AAF008002A9 /* HandlerReferenceBox.swift in Sources */,
 				E82944F21B237DA4004B5E2B /* SoundMediaHeaderBox.swift in Sources */,
 			);
