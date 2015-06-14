@@ -49,7 +49,7 @@ func parseFn(n: Int) -> BitParse {
         if let bits = bits {
             return BitParse.unit(bits).runBitParse(s1)
         }
-        let msg = "F(n): unexpected EOS: expected \(n), remaining \(s0.bitstream.length - s0.offset)"
+        let msg = "F(n): unexpected EOS: expected \(n) more, remaining \(s0.bitstream.length - s0.offset) @ offset \(s0.offset)"
         return BitParse.fail(msg).runBitParse(s1)
     }
 }

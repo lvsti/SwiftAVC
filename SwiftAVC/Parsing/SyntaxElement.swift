@@ -101,7 +101,8 @@ func parseBits(forSynelType type: SynelType) -> BitParse {
 func parseSynel(synel: Synel) -> BitParse {
     let parse = parseBits(forSynelType: synel.type)
     return parse >>- { value in
-        synel.validate(value) ?
+        println("parsing \(synel) = \(value)")
+        return synel.validate(value) ?
             BitParse.unit(value) :
             BitParse.fail("validation of synel '\(synel)' failed, value = \(value)")
     }
