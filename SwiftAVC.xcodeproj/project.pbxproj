@@ -24,6 +24,7 @@
 		E81CA2281B2D753600EBC509 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81E0FDD1B10C3FD000079CA /* Utils.swift */; };
 		E81CA2291B2D753E00EBC509 /* H264Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CBD441B053DC900EFD26B /* H264Context.swift */; };
 		E81CA22C1B2D771C00EBC509 /* ByteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CA22B1B2D771C00EBC509 /* ByteStream.swift */; };
+		E81CA22E1B2D78C400EBC509 /* PacketStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CA22D1B2D78C400EBC509 /* PacketStream.swift */; };
 		E81CA2311B2D7BB200EBC509 /* SwiftAVC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E86E60AF1B223B8000974F38 /* SwiftAVC.framework */; };
 		E81CA2321B2D7BB800EBC509 /* SwiftAVC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E86E60AF1B223B8000974F38 /* SwiftAVC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E81CD6301B225BD9008002A9 /* MovieHeaderBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81CD62F1B225BD9008002A9 /* MovieHeaderBox.swift */; };
@@ -106,6 +107,7 @@
 		E80E639B1B16586800AF960C /* VUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VUI.swift; sourceTree = "<group>"; };
 		E80E639D1B1664A900AF960C /* HRD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HRD.swift; sourceTree = "<group>"; };
 		E81CA22B1B2D771C00EBC509 /* ByteStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteStream.swift; sourceTree = "<group>"; };
+		E81CA22D1B2D78C400EBC509 /* PacketStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacketStream.swift; sourceTree = "<group>"; };
 		E81CBD401B053C8000EFD26B /* NAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAL.swift; sourceTree = "<group>"; };
 		E81CBD411B053C8000EFD26B /* SVCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVCExtensions.swift; sourceTree = "<group>"; };
 		E81CBD421B053C9200EFD26B /* MVCExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MVCExtensions.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				E81CA22B1B2D771C00EBC509 /* ByteStream.swift */,
+				E81CA22D1B2D78C400EBC509 /* PacketStream.swift */,
 			);
 			path = Transport;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				E86E60CB1B223C4800974F38 /* Monad.swift in Sources */,
 				E81CA2291B2D753E00EBC509 /* H264Context.swift in Sources */,
 				E81CA2211B2D753600EBC509 /* ScalingList.swift in Sources */,
+				E81CA22E1B2D78C400EBC509 /* PacketStream.swift in Sources */,
 				E81CA21D1B2D753600EBC509 /* H264Parse.swift in Sources */,
 				E81CA2251B2D753600EBC509 /* SDParse.swift in Sources */,
 				E81CA21F1B2D753600EBC509 /* RBSP.swift in Sources */,
