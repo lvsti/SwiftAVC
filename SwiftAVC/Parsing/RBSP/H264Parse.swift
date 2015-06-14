@@ -56,9 +56,9 @@ func parseWith(f: (SynelDictionary, Synel, Int) -> SynelDictionary, synel: Synel
         let (bpResult, newBPS) = bitParse.runBitParse(hps.bitParseState)
         
         switch bpResult {
-            case .Left(let box): return H264Parse.fail(box.unbox())
+            case .Left(let box): return H264Parse.fail(box.unwrap())
             case .Right(let box):
-                let value = box.unbox()
+                let value = box.unwrap()
                 let newSD = f(hps.dictionary, synel, value)
                 let newSDPS = SDParseState(bitPS: newBPS, dictionary: newSD)
                 return H264Parse.put(H264ParseState(parseState: newSDPS, context: hps.context))

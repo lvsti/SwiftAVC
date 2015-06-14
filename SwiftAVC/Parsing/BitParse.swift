@@ -47,10 +47,10 @@ func parseFn(n: Int) -> BitParse {
         let s1 = BitParseState(bitstream: s0.bitstream, offset: s0.offset + n)
         let bits = s0.bitstream.read(s0.offset, count: n)
         if let bits = bits {
-            return (.Right(Box(bits)), s1)
+            return BitParse.unit(bits).runBitParse(s1)
         }
         let msg = "F(n): unexpected EOS: expected \(n), remaining \(s0.bitstream.length - s0.offset)"
-        return (.Left(Box(msg)), s1)
+        return BitParse.fail(msg).runBitParse(s1)
     }
 }
 
@@ -100,7 +100,8 @@ func parseUEv() -> BitParse {
                 }
             } else {
                 let msg = "UE(v): unexpected EOS"
-                return (.Left(Box(msg)), BitParseState(bitstream: s.bitstream, offset: offset))
+                let newBPS = BitParseState(bitstream: s.bitstream, offset: offset)
+                return BitParse.fail(msg).runBitParse(newBPS)
             }
         }
         
@@ -108,10 +109,12 @@ func parseUEv() -> BitParse {
         if let mantissa = s.bitstream.read(offset, count: leadingZeroBitCount) {
             offset += leadingZeroBitCount
             let value = (1 << leadingZeroBitCount) - 1 + mantissa
-            return (.Right(Box(value)), BitParseState(bitstream: s.bitstream, offset: offset))
+            let newBPS = BitParseState(bitstream: s.bitstream, offset: offset)
+            return BitParse.unit(value).runBitParse(newBPS)
         } else {
             let msg = "UE(v): incomplete exp-Golomb codeword"
-            return (.Left(Box(msg)), BitParseState(bitstream: s.bitstream, offset: offset))
+            let newBPS = BitParseState(bitstream: s.bitstream, offset: offset)
+            return BitParse.fail(msg).runBitParse(newBPS)
         }
     }
 }
